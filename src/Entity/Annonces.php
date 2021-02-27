@@ -32,6 +32,12 @@ class Annonces
      */
     private $contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Annonces
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }

@@ -18,45 +18,40 @@ class Commentaire
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $user;
-
-    /**
      * @ORM\Column(type="datetime")
      */
-    private $datePublication;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $evenement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUser(): ?int
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->user;
+        return $this->date;
     }
 
-    public function setUser(int $user): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getDatePublication(): ?\DateTimeInterface
-    {
-        return $this->datePublication;
-    }
-
-    public function setDatePublication(\DateTimeInterface $datePublication): self
-    {
-        $this->datePublication = $datePublication;
+        $this->date = $date;
 
         return $this;
     }
@@ -69,6 +64,30 @@ class Commentaire
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        $this->evenement = $evenement;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }
