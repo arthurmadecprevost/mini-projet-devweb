@@ -2,30 +2,50 @@
 
 {% block title %}Hello EvenementController!{% endblock %}
 
+{% block eventPage %}
+    <a class="nav-item nav-link active" href="{{ path('events') }}">Evenements</a>
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/arthur/Documents/dev_web/mini-projet-devweb/src/Controller/EvenementController.php'|file_link(0) }}">src/Controller/EvenementController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/arthur/Documents/dev_web/mini-projet-devweb/templates/evenement/index.html.twig'|file_link(0) }}">templates/evenement/index.html.twig</a></code></li>
-    </ul>
-</div>
-
-    {% for event in evenements %}
-        <tr>
-            <td>{{ event.id }}</td>
-            <td>{{ event.libelle }}</td>
-            <td>{{ event.description }}</td>
-            <td>{{ event.lieu }}</td>
-            <td>{{ event.prix }}</td>
-            <td>{{ event.nbParticipants }}</td>
-        </tr>
-    {% endfor %}
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <h1>Evenements</h1>
+        {% for event in evenements %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.libelle }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
+                    <p class="card-text">{{ event.description }}</p>
+                    <a href="#" class="card-link">{{ event.prix }}€</a>
+                    <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

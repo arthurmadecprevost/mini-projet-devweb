@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenement", name="evenement")
+     * @Route("/evenements", name="events")
      */
     public function index(): Response
     {

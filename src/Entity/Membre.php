@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\MembreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass=MembreRepository::class)
  */
-class User implements UserInterface
+class Membre implements UserInterface
 {
     /**
      * @ORM\Id
@@ -62,7 +62,7 @@ class User implements UserInterface
     private $commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="membre")
      */
     private $reservations;
 
@@ -213,7 +213,7 @@ class User implements UserInterface
     {
         if (!$this->commentaires->contains($commentaire)) {
             $this->commentaires[] = $commentaire;
-            $commentaire->setAuteur($this);
+            $commentaire->setMembre($this);
         }
 
         return $this;
@@ -223,8 +223,8 @@ class User implements UserInterface
     {
         if ($this->commentaires->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
-            if ($commentaire->getAuteur() === $this) {
-                $commentaire->setAuteur(null);
+            if ($commentaire->getMembre() === $this) {
+                $commentaire->setMembre(null);
             }
         }
 
@@ -243,7 +243,7 @@ class User implements UserInterface
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
-            $reservation->setUser($this);
+            $reservation->setCaca($this);
         }
 
         return $this;
@@ -253,8 +253,8 @@ class User implements UserInterface
     {
         if ($this->reservations->removeElement($reservation)) {
             // set the owning side to null (unless already changed)
-            if ($reservation->getUser() === $this) {
-                $reservation->setUser(null);
+            if ($reservation->getCaca() === $this) {
+                $reservation->setCaca(null);
             }
         }
 

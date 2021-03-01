@@ -32,12 +32,7 @@ class Evenement
     /**
      * @ORM\Column(type="integer")
      */
-    private $prix;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbParticipants;
+    private $nbParticipantsMax;
 
     /**
      * @ORM\Column(type="datetime")
@@ -50,7 +45,7 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="event")
      */
     private $reservations;
 
@@ -58,6 +53,11 @@ class Evenement
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="evenement")
      */
     private $commentaires;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
 
     public function __construct()
     {
@@ -94,26 +94,14 @@ class Evenement
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getNbParticipantsMax(): ?int
     {
-        return $this->prix;
+        return $this->nbParticipantsMax;
     }
 
-    public function setPrix(int $prix): self
+    public function setNbParticipantsMax(int $nbParticipantsMax): self
     {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getNbParticipants(): ?int
-    {
-        return $this->nbParticipants;
-    }
-
-    public function setNbParticipants(int $nbParticipants): self
-    {
-        $this->nbParticipants = $nbParticipants;
+        $this->nbParticipantsMax = $nbParticipantsMax;
 
         return $this;
     }
@@ -154,7 +142,7 @@ class Evenement
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
-            $reservation->setEvenement($this);
+            $reservation->setEvent($this);
         }
 
         return $this;
@@ -164,8 +152,8 @@ class Evenement
     {
         if ($this->reservations->removeElement($reservation)) {
             // set the owning side to null (unless already changed)
-            if ($reservation->getEvenement() === $this) {
-                $reservation->setEvenement(null);
+            if ($reservation->getEvent() === $this) {
+                $reservation->setEvent(null);
             }
         }
 
@@ -198,6 +186,18 @@ class Evenement
                 $commentaire->setEvenement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

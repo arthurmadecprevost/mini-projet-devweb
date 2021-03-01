@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="index")
      */
     public function number(): Response
     {
         $number = random_int(0, 100);
 
-        return $this->render('lucky/number.html.twig', [
+        return $this->render('index.html.twig', [
             'number' => $number,
         ]);
     }

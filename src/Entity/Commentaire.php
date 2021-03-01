@@ -18,6 +18,12 @@ class Commentaire
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
@@ -33,15 +39,21 @@ class Commentaire
      */
     private $evenement;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $auteur;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getAuteur(): ?Membre
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?Membre $auteur): self
+    {
+        $this->auteur = $auteur;
+
+        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -76,18 +88,6 @@ class Commentaire
     public function setEvenement(?Evenement $evenement): self
     {
         $this->evenement = $evenement;
-
-        return $this;
-    }
-
-    public function getAuteur(): ?User
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(?User $auteur): self
-    {
-        $this->auteur = $auteur;
 
         return $this;
     }

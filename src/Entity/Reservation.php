@@ -21,39 +21,39 @@ class Reservation
      * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $evenement;
+    private $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private $membre;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEvenement(): ?Evenement
+    public function getEvent(): ?Evenement
     {
-        return $this->evenement;
+        return $this->event;
     }
 
-    public function setEvenement(?Evenement $evenement): self
+    public function setEvent(?Evenement $event): self
     {
-        $this->evenement = $evenement;
+        $this->event = $event;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getMembre(): ?Membre
     {
-        return $this->user;
+        return $this->membre;
     }
 
-    public function setUser(?User $user): self
+    public function setMembre(?Membre $membre): self
     {
-        $this->user = $user;
+        $this->membre = $membre;
 
         return $this;
     }

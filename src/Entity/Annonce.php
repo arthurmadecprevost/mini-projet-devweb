@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
+use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
+ * @ORM\Entity(repositoryClass=AnnonceRepository::class)
  */
-class Annonces
+class Annonce
 {
     /**
      * @ORM\Id
@@ -23,20 +23,15 @@ class Annonces
     private $datePublication;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Membre::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private $auteur;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $contenu;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $auteur;
 
     public function getId(): ?int
     {
@@ -55,14 +50,14 @@ class Annonces
         return $this;
     }
 
-    public function getUser(): ?int
+    public function getAuteur(): ?Membre
     {
-        return $this->user;
+        return $this->auteur;
     }
 
-    public function setUser(int $user): self
+    public function setAuteur(?Membre $auteur): self
     {
-        $this->user = $user;
+        $this->auteur = $auteur;
 
         return $this;
     }
@@ -75,18 +70,6 @@ class Annonces
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    public function getAuteur(): ?User
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(?User $auteur): self
-    {
-        $this->auteur = $auteur;
 
         return $this;
     }
