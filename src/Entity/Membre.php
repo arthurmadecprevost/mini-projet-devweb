@@ -54,7 +54,7 @@ class Membre implements UserInterface
     /**
      * @ORM\Column(type="integer")
      */
-    private $solde;
+    private $solde = 0;
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="auteur")
