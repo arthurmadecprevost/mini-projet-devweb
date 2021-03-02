@@ -8,6 +8,7 @@
 
 {% block body %}
         <h1>Evenements</h1>
+        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter un événement</a>
         {% for event in evenements %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
