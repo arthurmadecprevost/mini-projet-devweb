@@ -60,8 +60,8 @@ composer.phar
 
 # Embedded web-server pid file
 /.web-server-pid
-
 .idea
+.env
 package-lock.json
 .env
 node_modules

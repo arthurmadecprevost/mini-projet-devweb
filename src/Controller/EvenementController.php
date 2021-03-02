@@ -16,7 +16,7 @@ class EvenementController extends AbstractController
     /**
      * @Route("/evenements", name="events")
      */
-    public function index(): Response
+    public function list(): Response
     {
         $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 

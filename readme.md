@@ -12,10 +12,25 @@ Il est connecté à une base de données relationnelle PostgreSQL.
 
 ****
 
-##Installation
-
-Pour installer le projet, il vous suffit de faire un clone de ce répertoire Git, puis d'executer ces commandes:
+## Installation
+### Symfony
+Pour installer le projet, il vous suffit de faire un clone de ce répertoire Git, puis d'exécuter ces commandes :
     
+    git clone https://github.com/arthurmadecprevost/mini-projet-devweb.git
     composer install
+    yarn install
+Toutes les dépendances sont désormais installées. 
+### Base de données
+Vous devez configurer le **.env.sample** en le dupliquant et en le renommant **.env** et en remplaçant les identifiants par ceux de votre base de données.
 
-Vous devez ensuite configurer le .env en remplaçant les identifiants par ceux de votre base de données.
+Une fois les identifiants modifiés, vous pouvez **vérifier** que le schema de votre base est bien mappé avec la commande :
+    
+    php bin/console doctrine:schema:validate
+Doctrine (qui est une dépendance de notre projet) va alors s'occuper de créer les tables pour vous avec la commande suivante :
+
+    php bin/console doctrine:schema:update
+
+Vous pouvez voir le détail des requêtes SQL avec la commande :
+
+    php bin/console doctrine:schema:update --dump-sql
+
