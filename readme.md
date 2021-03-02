@@ -21,7 +21,7 @@ Pour installer le projet, il vous suffit de faire un clone de ce répertoire Git
     yarn install
 Toutes les dépendances sont désormais installées. 
 ### Base de données
-Vous devez configurer le .env en remplaçant les identifiants par ceux de votre base de données.
+Vous devez configurer le **.env.sample** en le dupliquant et en le renommant **.env** et en remplaçant les identifiants par ceux de votre base de données.
 
 Une fois les identifiants modifiés, vous pouvez **vérifier** que le schema de votre base est bien mappé avec la commande :
     
