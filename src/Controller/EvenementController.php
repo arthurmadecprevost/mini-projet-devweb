@@ -22,17 +22,4 @@ class EvenementController extends AbstractController
             'evenements' => $evenements,
         ]);
     }
-
-    public function create(Request $request, EntityManagerInterface $em) : Response
-    {
-        $evenement = new Evenement();
-        $form = $this->createForm(EvenementType::class, $evenement);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($evenement);
-            $em->flush();
-            return $this->redirectToRoute('evenement')
-        }
-    }
 }
