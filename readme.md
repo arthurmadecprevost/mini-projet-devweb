@@ -7,7 +7,8 @@
 Le Projet de Développement Web est un projet en Symfony 4.4 utilisant le squelette [website-skeleton](https://packagist.org/packages/symfony/website-skeleton#v4.4.99).
 Il est connecté à une base de données relationnelle PostgreSQL.
 ****
-- ###[Installation](readme.md "Installation")
+
+- [Installation](readme.md "Installation")
 
 ****
 
