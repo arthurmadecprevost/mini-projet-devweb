@@ -9,20 +9,27 @@
 {% block body %}
         <h1>Evenements</h1>
         <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter un événement</a>
-        {% for event in evenements %}
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.libelle }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
-                    <p class="card-text">{{ event.description }}</p>
-                    <a href="#" class="card-link">{{ event.prix }}€</a>
-                    <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a class="dropdown-item" href="/admin">Administration</a>
-                        <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Supprimer cet événement</a>
-                        <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
-                    {% endif %}
+        <div class="row">
+            {% for event in evenements %}
+                {% if event.date >  date() %}
+                <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.libelle }}</h5>
+
+                            <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
+                            <p class="card-text">{{ event.description }}</p>
+                            <a href="#" class="card-link">{{ event.prix }}€</a>
+                            <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Supprimer cet événement</a>
+                                <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
+                            {% endif %}
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-danger" role="button" data-bs-toggle="button">Réserver</a> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
 {% endblock %}
