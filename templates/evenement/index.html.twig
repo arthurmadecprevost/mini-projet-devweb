@@ -17,6 +17,11 @@
                     <p class="card-text">{{ event.description }}</p>
                     <a href="#" class="card-link">{{ event.prix }}€</a>
                     <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="dropdown-item" href="/admin">Administration</a>
+                        <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Supprimer cet événement</a>
+                        <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
