@@ -27,6 +27,18 @@ class EvenementController extends AbstractController
     }
 
     /**
+     * @Route("/evenement/{id}", name="event")
+     */
+    public function show($id): Response
+    {
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneById($id);
+
+        return $this->render('evenement/event.html.twig', [
+            'event'=>$evenement,
+        ]);
+    }
+
+    /**
      * Créer un nouvel evenement.
      * @Route("/nouvel-evenement", name="evenement.create")
      * @param Request $request
