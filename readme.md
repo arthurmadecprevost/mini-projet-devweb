@@ -34,3 +34,8 @@ Vous pouvez voir le détail des requêtes SQL avec la commande :
 
     php bin/console doctrine:schema:update --dump-sql
 
+## Développement
+Lors du développement sur le projet, vous aurez peut-être besoin de ces commandes:
+
+    yarn build
+Pour compiler le CSS et le JS de Webpack Encore.
