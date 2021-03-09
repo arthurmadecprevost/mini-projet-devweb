@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenements", name="events")
+     * @Route("/evenements", name="evenement.list")
      */
     public function list(): Response
     {
@@ -41,7 +41,7 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($evenement);
             $em->flush();
-            return $this->redirectToRoute('events');
+            return $this->redirectToRoute('evenement.list');
         }
         return $this->render('evenement/create.html.twig', [
             'form' => $form->createView(),
@@ -50,13 +50,15 @@ class EvenementController extends AbstractController
 
     /**
      * Modifier un evenement.
-     * @Route("/modifier-evenement", name="evenement.edit")
+     * @Route("/modifier-evenement/{id}", name="evenement.edit")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function edit(Request $request, Evenement $evenement, EntityManagerInterface $em) : Response
+    public function edit(Request $request,$id, EntityManagerInterface $em) : Response
     {
+
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->find($id);
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,16 +72,17 @@ class EvenementController extends AbstractController
 
     /**
      * Supprimer un evenement.
-     * @Route("/evenement-delete", name="evenement.delete")
+     * @Route("/evenement-delete/{id}", name="evenement.delete")
      * @param Request $request
      * @param Evenement $evenement
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function delete(Request $request, Evenement $evenement, EntityManagerInterface $em) : Response
+    public function delete(Request $request, $id, EntityManagerInterface $em) : Response
     {
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->find($id);
         $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('evenement.delete', ['slug' => $evenement->getSlug()]))
+            ->setAction($this->generateUrl('evenement.delete', ['id'=>$id]))
             ->getForm();
         $form->handleRequest($request);
         if ( ! $form->isSubmitted() || ! $form->isValid()) {
@@ -91,6 +94,7 @@ class EvenementController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
-        return $this->redirectToRoute('stage.list');
+        return $this->redirectToRoute('evenement.list');
     }
+
 }

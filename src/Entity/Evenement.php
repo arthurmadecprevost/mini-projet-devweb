@@ -64,7 +64,6 @@ class Evenement
         $this->reservations = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;
