@@ -3,7 +3,7 @@
 {% block title %}Hello EvenementController!{% endblock %}
 
 {% block eventPage %}
-    <a class="nav-item nav-link active" href="{{ path('events') }}">Evenements</a>
+    <a class="nav-item nav-link active" href="{{ path('evenement.list') }}">Evenements</a>
 {% endblock %}
 
 {% block body %}
@@ -22,8 +22,8 @@
                             <a href="#" class="card-link">{{ event.prix }}€</a>
                             <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Supprimer cet événement</a>
-                                <a href="{{ path('evenement.delete') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
+                                <a href="{{ path('evenement.delete', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button">Supprimer cet événement</a>
+                                <a href="{{ path('evenement.edit', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
                             {% endif %}
                             <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-danger" role="button" data-bs-toggle="button">Réserver</a> 
                         </div>
