@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenements", name="events")
+     * @Route("/evenements", name="evenement.list")
      */
     public function list(): Response
     {
@@ -53,10 +53,12 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($evenement);
             $em->flush();
-            return $this->redirectToRoute('events');
+            return $this->redirectToRoute('evenement.list');
         }
         return $this->render('evenement/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
+
 }
