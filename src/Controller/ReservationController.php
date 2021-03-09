@@ -38,6 +38,6 @@ class ReservationController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'événement '.$evenement->getLibelle().' a bien été réservé');
-        return $this->redirectToRoute('events');
+        return $this->redirectToRoute('evenement.list');
     }
 }
