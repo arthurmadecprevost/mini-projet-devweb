@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenements", name="evenement.list")
+     * @Route("/evenements", name="events")
      */
     public function list(): Response
     {
@@ -53,12 +53,56 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($evenement);
             $em->flush();
-            return $this->redirectToRoute('evenement.list');
+            return $this->redirectToRoute('events');
         }
         return $this->render('evenement/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
+    /**
+     * Modifier un evenement.
+     * @Route("/modifier-evenement", name="evenement.edit")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function edit(Request $request, Evenement $evenement, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createForm(EvenementType::class, $evenement);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('events');
+        }
+        return $this->render('evenement/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
+    /**
+     * Supprimer un evenement.
+     * @Route("/evenement-delete", name="evenement.delete")
+     * @param Request $request
+     * @param Evenement $evenement
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function delete(Request $request, Evenement $evenement, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('evenement.delete', ['slug' => $evenement->getSlug()]))
+            ->getForm();
+        $form->handleRequest($request);
+        if ( ! $form->isSubmitted() || ! $form->isValid()) {
+            return $this->render('evenement/delete.html.twig', [
+                'evenement' => $evenement,
+                'form' => $form->createView(),
+            ]);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($evenement);
+        $em->flush();
+        return $this->redirectToRoute('stage.list');
+    }
 }

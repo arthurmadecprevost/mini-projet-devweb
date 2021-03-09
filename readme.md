@@ -28,9 +28,14 @@ Une fois les identifiants modifiés, vous pouvez **vérifier** que le schema de 
     php bin/console doctrine:schema:validate
 Doctrine (qui est une dépendance de notre projet) va alors s'occuper de créer les tables pour vous avec la commande suivante :
 
-    php bin/console doctrine:schema:update
+    php bin/console doctrine:schema:update --force
 
 Vous pouvez voir le détail des requêtes SQL avec la commande :
 
     php bin/console doctrine:schema:update --dump-sql
 
+## Développement
+Lors du développement sur le projet, vous aurez peut-être besoin de ces commandes:
+
+    yarn build
+Pour compiler le CSS et le JS de Webpack Encore.
