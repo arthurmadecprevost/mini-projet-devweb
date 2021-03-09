@@ -11,7 +11,6 @@
             <li><strong>Date : </strong>{{ evenement.date|date('m/d/Y') }}</li>
         </ul>
     </div>
-    <div class="collapse navbar-collapse">
         {{ form_start(form, {'attr': {'class': 'navbar-form navbar-left'}}) }}
         {{ form_widget(form) }}
         <a href="{{ path('evenement.list') }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Annuler</a>
@@ -20,6 +19,4 @@
             Supprimer
         </button>
         {{ form_end(form) }}
-    </div>
 {% endblock %}
-k %}
