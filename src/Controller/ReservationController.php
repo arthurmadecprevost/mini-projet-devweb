@@ -11,12 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/reservation", name="reservation")
+     * @Route("/mesreservation", name="myreservation")
      */
-    public function index(): Response
+    public function myReservation(): Response
     {
+        $reservations = $this->getUser()->getReservations();
         return $this->render('reservation/index.html.twig', [
-            'controller_name' => 'ReservationController',
+            'reservations' => $reservations
         ]);
     }
     /**
