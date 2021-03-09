@@ -15,7 +15,7 @@
                 <div class="col-sm">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ event.libelle }}</h5>
+                            <a href="/evenement/{{ event.id }}"class="card-title"><h5>{{ event.libelle }}</h5></a>
 
                             <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                             <p class="card-text">{{ event.description }}</p>
