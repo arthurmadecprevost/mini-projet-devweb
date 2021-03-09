@@ -47,4 +47,13 @@ class EvenementRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findOneById($id): ?Evenement
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

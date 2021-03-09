@@ -66,6 +66,11 @@ class Membre implements UserInterface
      */
     private $reservations;
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
