@@ -75,7 +75,7 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirectToRoute('events');
+            return $this->redirectToRoute('evenement.list');
         }
         return $this->render('evenement/create.html.twig', [
             'form' => $form->createView(),
