@@ -16,15 +16,15 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <a href="/evenement/{{ event.id }}"class="card-title"><h5>{{ event.libelle }}</h5></a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('evenement.delete', {id:event.id}) }}" style="color: #222;" class="btn-suppr" role="button" data-bs-toggle="button"><span class="material-icons">delete</span></a>
+                                <a href="{{ path('evenement.edit', {id:event.id}) }}" style="color: #222;" class="btn-suppr" role="button" data-bs-toggle="button"><span class="material-icons">create</span></a>
+                            {% endif %}
                             <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                             <p class="card-text">{{ event.description }}</p>
                             <a href="#" class="card-link">{{ event.prix }}€</a>
                             <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('evenement.delete', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button"><img src="img/close.png"></a>
-                                <a href="{{ path('evenement.edit', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
-                            {% endif %}
-                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button" data-bs-toggle="button">S'inscrire</a>
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-danger" role="button" data-bs-toggle="button">Réserver</a> 
                         </div>
                     </div>
                 </div>
