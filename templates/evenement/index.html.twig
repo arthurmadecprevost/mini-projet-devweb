@@ -24,7 +24,7 @@
                                 <a href="{{ path('evenement.delete', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button"><img src="img/close.png"></a>
                                 <a href="{{ path('evenement.edit', {id:event.id}) }}" class="btn btn-primary" role="button" data-bs-toggle="button">Modifer cet événement</a>
                             {% endif %}
-                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-danger" role="button" data-bs-toggle="button">Réserver</a> 
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button" data-bs-toggle="button">S'inscrire</a>
                         </div>
                     </div>
                 </div>

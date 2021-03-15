@@ -108,5 +108,28 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
+    public function filtre(Request $request)
+    {
+        $form = $this->createFormBuilder()
+            ->add('auteur', EntityType::class, [
+                'class' => Auteur::class])
+            ->add('rechercher', SubmitType::class)
+            ->getForm();
+
+
+        $formRechAut->handleRequest($request);
+
+        if($formRechAut->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
+
+            //$recherche = $formRechAut->getData();
+
+            //var_dump($recherche);
+            $auteur = $formRechAut->getData()['auteur'];
+            return $this->redirectToRoute('leslivresbyauteur',['id' => ($auteur->getId())]);
+        }
+        return $this->render('Recherche/rechercheParAut.html.twig', [
+            'titre' => "Rechercher livres par auteur",
+            'formRechAut' => $formRechAut->createView()]);
+    }
 
 }
