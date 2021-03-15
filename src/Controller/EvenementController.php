@@ -5,12 +5,17 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/{_locale}")
+ */
 class EvenementController extends AbstractController
 {
     /**
@@ -110,26 +115,20 @@ class EvenementController extends AbstractController
     }
     public function filtre(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('auteur', EntityType::class, [
-                'class' => Auteur::class])
+        $formFiltre = $this->createFormBuilder()
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'sport' => 'sport',
+                    'cinema' => 'cinema',
+                    'théatre' => 'théatre',
+                    'restaurant' => 'restaurant',
+                    'randonnée' => 'randonée'
+                ]
+            ])
             ->add('rechercher', SubmitType::class)
             ->getForm();
-
-
-        $formRechAut->handleRequest($request);
-
-        if($formRechAut->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
-
-            //$recherche = $formRechAut->getData();
-
-            //var_dump($recherche);
-            $auteur = $formRechAut->getData()['auteur'];
-            return $this->redirectToRoute('leslivresbyauteur',['id' => ($auteur->getId())]);
-        }
-        return $this->render('Recherche/rechercheParAut.html.twig', [
-            'titre' => "Rechercher livres par auteur",
-            'formRechAut' => $formRechAut->createView()]);
+        return $this->render('evenement/index.html.twig', [
+            'formRechAut' => $formFiltre->createView()]);
     }
 
 }

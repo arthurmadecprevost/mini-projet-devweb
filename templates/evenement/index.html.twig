@@ -22,9 +22,9 @@
                             {% endif %}
                             <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                             <p class="card-text">{{ event.description }}</p>
-                            <a href="#" class="card-link">{{ event.prix }}€</a>
-                            <a href="#" class="card-link">0 / {{ event.nbParticipantsMax }} participants</a>
-                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-danger" role="button" data-bs-toggle="button">Réserver</a> 
+                            <p class="card-text">prix : {{ event.prix }}€</p>
+                            <p class="card-text">0 / {{ event.nbParticipantsMax }} participants</p>
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button" data-bs-toggle="button">Réserver</a>
                         </div>
                     </div>
                 </div>
