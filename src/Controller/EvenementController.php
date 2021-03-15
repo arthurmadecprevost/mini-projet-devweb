@@ -102,18 +102,12 @@ class EvenementController extends AbstractController
             ->setAction($this->generateUrl('evenement.delete', ['id'=>$id]))
             ->getForm();
         $form->handleRequest($request);
-        if ( ! $form->isSubmitted() || ! $form->isValid()) {
-            return $this->render('evenement/delete.html.twig', [
-                'evenement' => $evenement,
-                'form' => $form->createView(),
-            ]);
-        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
-    public function filtre(Request $request)
+/*    public function filtre(Request $request)
     {
         $formFiltre = $this->createFormBuilder()
             ->add('category', ChoiceType::class, [
@@ -129,6 +123,6 @@ class EvenementController extends AbstractController
             ->getForm();
         return $this->render('evenement/index.html.twig', [
             'formRechAut' => $formFiltre->createView()]);
-    }
+    }*/
 
 }
