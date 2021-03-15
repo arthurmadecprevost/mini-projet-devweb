@@ -8,7 +8,7 @@
 
 {% block body %}
         <h1>Evenements</h1>
-        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter un événement</a>
+        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">Ajouter un événement</a>
         <div class="row">
             {% for event in evenements %}
                 {% if event.date >  date() %}
@@ -17,8 +17,8 @@
                         <div class="card-body">
                             <a href="/evenement/{{ event.id }}"class="card-title"><h5>{{ event.libelle }}</h5></a>
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('evenement.delete', {id:event.id}) }}" style="color: #222;" class="btn-suppr" role="button" data-bs-toggle="button"><span class="material-icons">delete</span></a>
-                                <a href="{{ path('evenement.edit', {id:event.id}) }}" style="color: #222;" class="btn-suppr" role="button" data-bs-toggle="button"><span class="material-icons">create</span></a>
+                                <a class="btn btn-light btn-suppr" href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">delete</span></a>
+                                <a class="btn btn-light btn-suppr" href="{{ path('evenement.edit', {id:event.id}) }}" role="button"><span class="material-icons">create</span></a>
                             {% endif %}
                             <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                             <p class="card-text">{{ event.description }}</p>
@@ -29,6 +29,23 @@
                     </div>
                 </div>
                 {% endif %}
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Suppression de l'élément</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Voulez-vous vraiment supprimer cet événement ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a class="btn btn-danger" href="{{ path('evenement.delete', {id:event.id}) }}" role="button">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
 {% endblock %}
