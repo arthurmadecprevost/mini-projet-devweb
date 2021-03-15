@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.libelle }}{% endblock %}
+
+{% block eventPage %}
+    <a class="nav-item nav-link active" href="{{ path('evenement.list') }}">Evenements</a>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ event.libelle }}</h1>
+    {{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}
+    {{ event.description }}
+    {{ event.prix }}
+    {{ event.nbParticipantsMax }}
+{% endblock %}

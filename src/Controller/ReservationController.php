@@ -11,12 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/reservation", name="reservation")
+     * @Route("/mesreservation", name="myreservation")
      */
-    public function index(): Response
+    public function myReservation(): Response
     {
+        $reservations = $this->getUser()->getReservations();
         return $this->render('reservation/index.html.twig', [
-            'controller_name' => 'ReservationController',
+            'reservations' => $reservations
         ]);
     }
     /**
@@ -38,6 +39,6 @@ class ReservationController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'L\'événement '.$evenement->getLibelle().' a bien été réservé');
-        return $this->redirectToRoute('events');
+        return $this->redirectToRoute('evenement.list');
     }
 }
