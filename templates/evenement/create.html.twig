@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un événement</h1>
+    {% if app.request.get('_route') == 'evenement.create' %}
+        <h1>Création d'un événement</h1>
+    {% else %}
+        <h1>Modification d'un événement</h1>
+    {% endif %}
+
 
     {{ form_start(form) }}
     <div class="form-row">
@@ -43,8 +48,14 @@
         {{ form_widget(form.description) }}
         {{ form_errors(form.description) }}
     </div>
+    {% if app.request.get('_route') == 'evenement.create' %}
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Créer</button>
     </div>
+    {% else %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </div>
+    {% endif %}
     {{ form_end(form) }}
 {% endblock %}
