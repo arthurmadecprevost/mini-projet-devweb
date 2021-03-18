@@ -42,9 +42,9 @@ Pour compiler le CSS et le JS de Webpack Encore.
 
 Pour installer le filtre DateTime de twig
 ```bash
-    composer require twig/intl-extra
+composer require twig/intl-extra
 ```
 Pour prendre en compte la timeZone française
 ```bash
-    sudo apt-get install php8.0-intl
+sudo apt-get install php8.0-intl
 ```
