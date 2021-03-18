@@ -39,3 +39,12 @@ Lors du développement sur le projet, vous aurez peut-être besoin de ces comman
 
     yarn build
 Pour compiler le CSS et le JS de Webpack Encore.
+
+Pour installer le filtre DateTime de twig
+```bash
+composer require twig/intl-extra
+```
+Pour prendre en compte la timeZone française
+```bash
+sudo apt-get install php8.0-intl
+```
