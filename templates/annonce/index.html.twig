@@ -8,7 +8,7 @@
 
 {% block body %}
     <h1>Annonces</h1>
-    <a href="{{ path('annonce.create') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter une annonce</a>
+    <a href="{{ path('annonce.create') }}" class="btn btn-primary" role="button">Ajouter une annonce</a>
     {% for annonce in annonces %}
         <div class="card" style="width: 18rem;">
             <div class="card-body">
