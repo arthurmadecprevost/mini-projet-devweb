@@ -10,6 +10,7 @@
     <h1>{{ event.libelle }}</h1>
     {{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}
     {{ event.description }}
-    {{ event.prix }}
-    {{ event.nbParticipantsMax }}
+    <p>prix : {{ event.nbParticipantsMax }}</p>
+    <p>Nombre participant max : {{ event.nbParticipantsMax }}</p>
+
 {% endblock %}

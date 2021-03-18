@@ -19,13 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnonceController extends AbstractController
 {
     /**
-     * @Route("/annonces", name="annonces")
+     * @Route("/", name="annonces")
      */
     public function index(): Response
     {
         $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
 
-        return $this->render('annonce/index.html.twig', [
+        return $this->render('index.html.twig', [
             'annonces' => $annonces,
         ]);
     }
