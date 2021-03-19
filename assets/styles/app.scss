@@ -6,3 +6,27 @@
 .row .col-sm{
   margin-top: 20px;
 }
+.btn-suppr{
+  float : right;
+  width: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0.2rem;
+}
+.navbar-brand:hover{
+  color : white
+}
+/*.btn-edit{
+  float : right;
+  width: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0.2rem;
+}*/
+.card-title{
+  display : inline-block;
+}
+.nav-item .nav-link, .navbar-brand{
+  color: white;
+  font-weight: bold;
+}
