@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Entity\Evenement;
+use App\Form\CommentaireType;
 use App\Form\EvenementType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,11 +35,28 @@ class EvenementController extends AbstractController
 
     /**
      * @Route("/evenement/{id}", name="event")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
-    public function show($id): Response
+    public function show($id,Request $request, EntityManagerInterface $em): Response
     {
         $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneById($id);
+        $comentaire = new Commentaire();
+        $user = $this->getUser();
+        $comentaire->setAuteur($user);
+        $comentaire->setEvenement($evenement);
+        //$today = CURRENT_DATE();
+        $today = new \Date();
+        $comentaire->setDate($today);
+        $form = $this->createForm(CommentaireType::class, $comentaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($evenement);
+            $em->flush();
+        }
         return $this->render('evenement/event.html.twig', [
+            'commentaire' => $form->createView(),
             'event'=>$evenement,
         ]);
     }
@@ -107,6 +125,7 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
+
 /*    public function filtre(Request $request)
     {
         $formFiltre = $this->createFormBuilder()
