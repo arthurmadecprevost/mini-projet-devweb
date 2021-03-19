@@ -33,6 +33,17 @@ class Annonce
      */
     private $contenu;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $evenement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +81,30 @@ class Annonce
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        $this->evenement = $evenement;
 
         return $this;
     }
