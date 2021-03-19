@@ -1,15 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un événement :</h1>
+    {% if app.request.get('_route') == 'evenement.create' %}
+        <h1>Création d'un événement</h1>
+    {% else %}
+        <h1>Modification d'un événement</h1>
+    {% endif %}
+
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Enregistrer</button>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="name" class="form-label">{{ form_label(form.libelle) }}</label>
+            {{ form_widget(form.libelle) }}
+            {{ form_errors(form.libelle) }}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="category" class="form-label">{{ form_label(form.category) }}</label>
+            {{ form_widget(form.category) }}
+            {{ form_errors(form.category) }}
         </div>
     </div>
+    <div class="form-group">
+        <label for="place" class="form-label">{{ form_label(form.lieu) }}</label>
+        {{ form_widget(form.lieu) }}
+        {{ form_errors(form.lieu) }}
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="nbParticipant" class="form-label">{{ form_label(form.nbParticipantsMax) }}</label>
+            {{ form_widget(form.nbParticipantsMax) }}
+            {{ form_errors(form.nbParticipantsMax) }}
+        </div>
+        <div class="form-group">
+            <label for="prix" class="form-label">{{ form_label(form.prix) }}</label>
+            {{ form_widget(form.prix) }}
+            {{ form_errors(form.prix) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="date" class="form-label">{{ form_label(form.date) }}</label>
+        {{ form_widget(form.date) }}
+        {{ form_errors(form.date) }}
+    </div>
+    <div class="form-group">
+        <label for="date" class="form-label">{{ form_label(form.description) }}</label>
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
+    </div>
+    {% if app.request.get('_route') == 'evenement.create' %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Créer</button>
+    </div>
+    {% else %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </div>
+    {% endif %}
     {{ form_end(form) }}
 {% endblock %}

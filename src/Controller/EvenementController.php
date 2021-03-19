@@ -52,6 +52,7 @@ class EvenementController extends AbstractController
      */
 
     public function create(Request $request, EntityManagerInterface $em) : Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);

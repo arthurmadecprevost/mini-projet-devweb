@@ -8,9 +8,26 @@
 
 {% block body %}
     <h1>Mes réservations</h1>
-    <ul class="list-group">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Heure</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Nom de l'évènement</th>
+            <th scope="col">Catégorie</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for reservation in reservations %}
-            <li class="list-group-item">{{ reservation.event.libelle }}</li>
+            <tr>
+                <th>{{ reservation.event.date |format_datetime('short', 'none', locale='fr') }}</th>
+                <th>{{ reservation.event.date |format_datetime('none', 'short', locale='fr') }}</th>
+                <td>{{ reservation.event.lieu }}</td>
+                <td>{{ reservation.event.libelle }}</td>
+                <td>@{{ reservation.event.category }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 {% endblock %}
