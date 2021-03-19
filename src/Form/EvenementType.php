@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Evenement;
-use phpDocumentor\Reflection\Types\Integer;
+
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,21 +19,40 @@ class EvenementType extends AbstractType
     {
         $builder
             ->add('libelle', TextType::class, [
-                'label' => 'Nom de l\'événement'
+                'label' => 'Nom de l\'événement',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'sport' => 'sport',
+                    'cinema' => 'cinema',
+                    'théatre' => 'théatre',
+                    'restaurant' => 'restaurant',
+                    'randonnée' => 'randonée'
+                ],
+                'label' => 'Catégorie',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('lieu', TextType::class, [
-                'label' => 'Lieu'
+                'label' => 'Lieu',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('nbParticipantsMax', IntegerType::class, [
                 'label' => 'Nombre de participants maximum',
-                'attr' => array('min' => 2)
+                'attr' => ['min' => 2, 'class' => 'form-control']
             ])
-            ->add('date')
-            ->add('description')
+            ->add('date', DateTimeType::class,[
+                'widget' => 'choice',
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('prix',IntegerType::class, [
                 'label' => 'Prix',
-                'attr' => array('min' => 0)
+                'attr' => ['min' => 0, 'class' => 'form-control']
             ])
+
         ;
     }
 
