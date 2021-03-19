@@ -17,7 +17,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg" style="background-color: #476C9B;">
-
     <a class="navbar-brand" href="{{ path('index') }}">Outil de réservations</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,10 +30,17 @@
                 {% endblock %}
             </li>
             <li class="nav-item">
+                {% block annoncePage %}
+                    <a class="nav-item nav-link" href="{{ path('annonces') }}">Annonces</a>
+                {% endblock %}
+            </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
                 {% block myreservationPage %}
                     <a class="nav-item nav-link" href="{{ path('myreservation') }}">Mes réservations</a>
                 {% endblock %}
             </li>
+            {% endif %}
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
@@ -60,7 +66,7 @@
                     {% endif %}
                     <a class="dropdown-item" href="#">Paramètres</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                 </div>
                 </li>
                 {% else %}

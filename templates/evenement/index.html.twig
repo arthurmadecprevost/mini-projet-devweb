@@ -15,7 +15,7 @@
                 <div class="col-sm">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <a href="/evenement/{{ event.id }}"class="card-title"><h5>{{ event.libelle }}</h5></a>
+                            <a href="{{ path('event', {id:event.id}) }}"class="card-title"><h5>{{ event.libelle }}</h5></a>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a class="btn btn-light btn-suppr" href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">delete</span></a>
                                 <a class="btn btn-light btn-suppr" href="{{ path('evenement.edit', {id:event.id}) }}" role="button"><span class="material-icons">create</span></a>
@@ -24,7 +24,7 @@
                             <p class="card-text">{{ event.description }}</p>
                             <p class="card-text">prix : {{ event.prix }}€</p>
                             <p class="card-text">0 / {{ event.nbParticipantsMax }} participants</p>
-                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button" data-bs-toggle="button">Réserver</a>
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button">Réserver</a>
                         </div>
                     </div>
                 </div>

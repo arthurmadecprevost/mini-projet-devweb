@@ -39,9 +39,15 @@ class AnnonceController extends AbstractController
      */
 
     public function create(Request $request, EntityManagerInterface $em) : Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $annonce = new Annonce();
+
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $annonce->setAuteur($user);
+        $annonce->setDatePublication(new \DateTime('now'));
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($annonce);
             $em->flush();
