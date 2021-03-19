@@ -64,10 +64,22 @@ class Evenement
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="mesevenements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organisateur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="evenement")
+     */
+    private $annonces;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -214,6 +226,48 @@ class Evenement
     public function setCategory(string $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?Membre
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?Membre $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getEvenement() === $this) {
+                $annonce->setEvenement(null);
+            }
+        }
 
         return $this;
     }

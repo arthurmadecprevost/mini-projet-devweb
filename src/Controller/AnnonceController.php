@@ -19,26 +19,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnonceController extends AbstractController
 {
     /**
-     * @Route("/annonces", name="annonces")
+     * @Route("/", name="annonces")
      */
     public function index(): Response
     {
         $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
 
-        return $this->render('annonce/index.html.twig', [
+        return $this->render('index.html.twig', [
             'annonces' => $annonces,
         ]);
     }
 
     /**
      * Créer une nouvelle annonce.
-     * @Route("/nouvelle-annonce", name="annonce.create")
+     * @Route("/nouvelle-annonce/{id}", name="annonce.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
 
-    public function create(Request $request, EntityManagerInterface $em) : Response {
+    public function create($id, Request $request, EntityManagerInterface $em) : Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $annonce = new Annonce();
 
@@ -46,6 +46,8 @@ class AnnonceController extends AbstractController
         $form->handleRequest($request);
         $user = $this->getUser();
         $annonce->setAuteur($user);
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
+        $annonce->setEvenement($evenement);
         $annonce->setDatePublication(new \DateTime('now'));
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -47,7 +47,7 @@ class EvenementRepository extends ServiceEntityRepository
         ;
     }
     */
-
+/*
     public function findOneById($id): ?Evenement
     {
         return $this->createQueryBuilder('e')
@@ -56,4 +56,5 @@ class EvenementRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleResult();
     }
+*/
 }

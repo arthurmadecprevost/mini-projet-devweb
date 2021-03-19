@@ -66,6 +66,11 @@ class Membre implements UserInterface
      */
     private $reservations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="organisateur")
+     */
+    private $mesevenements;
+
     public function __toString()
     {
         return $this->email;
@@ -75,6 +80,7 @@ class Membre implements UserInterface
     {
         $this->commentaires = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->mesevenements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,6 +266,36 @@ class Membre implements UserInterface
             // set the owning side to null (unless already changed)
             if ($reservation->getCaca() === $this) {
                 $reservation->setCaca(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getMesevenements(): Collection
+    {
+        return $this->mesevenements;
+    }
+
+    public function addMesevenement(Evenement $mesevenement): self
+    {
+        if (!$this->mesevenements->contains($mesevenement)) {
+            $this->mesevenements[] = $mesevenement;
+            $mesevenement->setOrganisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesevenement(Evenement $mesevenement): self
+    {
+        if ($this->mesevenements->removeElement($mesevenement)) {
+            // set the owning side to null (unless already changed)
+            if ($mesevenement->getOrganisateur() === $this) {
+                $mesevenement->setOrganisateur(null);
             }
         }
 

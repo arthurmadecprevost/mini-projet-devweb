@@ -1,4 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block body %}
 
+{% block title %}Annonces{% endblock %}
+
+{% block annoncePage %}
+    <a class="nav-item nav-link active" href="{{ path('annonces') }}">Annonces</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Annonces</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter une annonce</a>
+    {% endif %}
+    {% for annonce in annonces %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ annonce.datePublication|date("d/m/Y H:i:s") }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ annonce.auteur.prenom }}</h6>
+                <p class="card-text">{{ annonce.contenu }}</p>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

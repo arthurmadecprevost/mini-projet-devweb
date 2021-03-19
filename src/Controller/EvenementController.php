@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Evenement;
+use App\Form\CommentaireType;
 use App\Form\EvenementType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -33,12 +35,27 @@ class EvenementController extends AbstractController
 
     /**
      * @Route("/evenement/{id}", name="event")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
-    public function show($id): Response
+    public function show($id, Request $request, EntityManagerInterface $em): Response
     {
-        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneById($id);
-
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
+        $commentaire = new Commentaire();
+        $user = $this->getUser();
+        $commentaire->setAuteur($user);
+        $commentaire->setEvenement($evenement);
+        //$today = CURRENT_DATE();
+        $commentaire->setDate(new \DateTime('now'));
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($commentaire);
+            $em->flush();
+        }
         return $this->render('evenement/event.html.twig', [
+            'commentaire' => $form->createView(),
             'event'=>$evenement,
         ]);
     }
@@ -54,6 +71,8 @@ class EvenementController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em) : Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $evenement = new Evenement();
+        $user = $this->getUser();
+        $evenement->setOrganisateur($user);
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -108,6 +127,7 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
+
 /*    public function filtre(Request $request)
     {
         $formFiltre = $this->createFormBuilder()

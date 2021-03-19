@@ -15,6 +15,19 @@
             <h5 class="card-title">{{ event.libelle }}</h5>
             <p class="card-text">{{ event.description }}</p>
             <a href="#" class="btn btn-primary">Commenter</a>
+            <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">Ajouter une annonce</a>
         </div>
     </div>
+
+
+    {{ form_start(commentaire) }}
+    {{ form_widget(commentaire) }}
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Enregistrer</button>
+        </div>
+    </div>
+    {{ form_end(commentaire) }}
+
 {% endblock %}
