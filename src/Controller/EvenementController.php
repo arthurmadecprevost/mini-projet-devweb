@@ -39,20 +39,19 @@ class EvenementController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function show($id,Request $request, EntityManagerInterface $em): Response
+    public function show($id, Request $request, EntityManagerInterface $em): Response
     {
-        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneById($id);
-        $comentaire = new Commentaire();
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
+        $commentaire = new Commentaire();
         $user = $this->getUser();
-        $comentaire->setAuteur($user);
-        $comentaire->setEvenement($evenement);
+        $commentaire->setAuteur($user);
+        $commentaire->setEvenement($evenement);
         //$today = CURRENT_DATE();
-        $today = new \Date();
-        $comentaire->setDate($today);
-        $form = $this->createForm(CommentaireType::class, $comentaire);
+        $commentaire->setDate(new \DateTime('now'));
+        $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($evenement);
+            $em->persist($commentaire);
             $em->flush();
         }
         return $this->render('evenement/event.html.twig', [
@@ -72,6 +71,8 @@ class EvenementController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em) : Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $evenement = new Evenement();
+        $user = $this->getUser();
+        $evenement->setOrganisateur($user);
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
