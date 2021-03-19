@@ -15,14 +15,9 @@
             <h5 class="card-title">{{ event.libelle }}</h5>
             <p class="card-text">{{ event.description }}</p>
             <a href="#" class="btn btn-primary">Commenter</a>
+            <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">Ajouter une annonce</a>
         </div>
     </div>
-    <h1>{{ event.libelle }}</h1>
-    {{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}
-    {{ event.description }}
-    <p>prix : {{ event.nbParticipantsMax }}</p>
-    <p>Nombre participant max : {{ event.nbParticipantsMax }}</p>
-<<<<<<< HEAD
 
 
     {{ form_start(commentaire) }}
@@ -35,6 +30,4 @@
     </div>
     {{ form_end(commentaire) }}
 
-=======
->>>>>>> b20c687027ed4cf4d2ffa7603d8bd718dfcd2eb0
 {% endblock %}

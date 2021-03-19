@@ -9,7 +9,7 @@
 {% block body %}
     <h1>Annonces</h1>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('annonce.create') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter une annonce</a>
+        <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter une annonce</a>
     {% endif %}
     {% for annonce in annonces %}
         <div class="card" style="width: 18rem;">
