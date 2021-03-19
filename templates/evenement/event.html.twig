@@ -17,4 +17,9 @@
             <a href="#" class="btn btn-primary">Commenter</a>
         </div>
     </div>
+    <h1>{{ event.libelle }}</h1>
+    {{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}
+    {{ event.description }}
+    <p>prix : {{ event.nbParticipantsMax }}</p>
+    <p>Nombre participant max : {{ event.nbParticipantsMax }}</p>
 {% endblock %}

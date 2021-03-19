@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,7 +38,6 @@ class EvenementController extends AbstractController
     public function show($id): Response
     {
         $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneById($id);
-
         return $this->render('evenement/event.html.twig', [
             'event'=>$evenement,
         ]);
