@@ -10,18 +10,18 @@
     {{ form_start(registrationForm) }}
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="prenom" class="form-label">{{ 'signin.firstname' | trans }}</label>
+                <label for="firstname" class="form-label">{{ 'signin.firstname' | trans }}</label>
                 {{ form_widget(registrationForm.prenom) }}
                 {{ form_errors(registrationForm.prenom) }}
             </div>
             <div class="form-group col-md-6">
-                <label for="nom" class="form-label">{{ 'signin.lastname' | trans }}</label>
+                <label for="lastname" class="form-label">{{ 'signin.lastname' | trans }}</label>
                 {{ form_widget(registrationForm.nom) }}
                 {{ form_errors(registrationForm.nom) }}
             </div>
         </div>
         <div class="form-group">
-            <label for="date" class="form-label">{{ 'signin.birthdate' | trans }}</label>
+            <label for="birthdate" class="form-label">{{ 'signin.birthdate' | trans }}</label>
             {{ form_widget(registrationForm.dateNaissance) }}
             {{ form_errors(registrationForm.dateNaissance) }}
         </div>

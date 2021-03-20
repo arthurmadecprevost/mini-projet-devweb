@@ -19,7 +19,7 @@
                             <p class="card-text">{{ event.description }}</p>
                             <p class="card-text">{{'event.price'|trans}} : {{ event.prix }}€</p>
                             <p class="card-text">0 / {{ event.nbParticipantsMax }} participants</p>
-                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button">Réserver</a>
+                            <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button">{{ 'event.book' | trans }}</a>
                         </div>
                     </div>
                 </div>

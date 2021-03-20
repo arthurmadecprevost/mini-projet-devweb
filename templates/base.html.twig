@@ -37,7 +37,7 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
                 {% block myreservationPage %}
-                    <a class="nav-item nav-link" href="{{ path('myreservation') }}">Mes réservations</a>
+                    <a class="nav-item nav-link" href="{{ path('myreservation') }}">{{ 'myreservations' | trans}}</a>
                 {% endblock %}
             </li>
             {% endif %}

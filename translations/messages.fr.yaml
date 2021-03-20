@@ -4,9 +4,12 @@ login : 'Connexion'
 signin : 'Inscription'
 email : 'Adresse e-mail'
 password : 'Mot de passe'
+myreservations : 'Mes réservations'
 
 event.add : 'Ajouter un événement'
 event.price : 'Prix'
+event.book : 'Réserver'
+event.addannounce : 'Ajouter une annonce'
 # Login Page
 login.createaccount : 'créer un compte'
 login.notsignedin : 'Si vous n''êtes pas encore inscrit,'
@@ -15,3 +18,8 @@ login.loggedinas : 'Vous êtes connecté en tant que'
 signin.firstname : 'Prénom'
 signin.lastname : 'Nom'
 signin.birthdate : 'Date de naissance'
+# Commentaire Page
+commentaire.coms : 'Commentaires'
+commentaire.addcom : 'Ajouter un commentaire'
+
+
