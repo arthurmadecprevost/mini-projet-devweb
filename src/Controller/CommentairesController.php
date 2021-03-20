@@ -28,6 +28,7 @@ class CommentairesController extends AbstractController
             'controller_name' => 'CommentairesController',
         ]);
     }
+
     /**
      * @Route("/commentaires", name="commentaires.list")
      */
