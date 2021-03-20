@@ -14,8 +14,9 @@
     {% for annonce in annonces %}
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">{{ annonce.datePublication|date("d/m/Y H:i:s") }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ annonce.auteur.prenom }}</h6>
+                <a href="#" class="card-title">{{ annonce.titre }}</a>
+                <h6 class="card-subtitle mb-2 text-muted">{{ annonce.datePublication|date("d/m/Y H:i:s") }}</h6>
+                <p class="card-text">{{ annonce.auteur.prenom }}</p>
                 <p class="card-text">{{ annonce.contenu }}</p>
             </div>
         </div>
