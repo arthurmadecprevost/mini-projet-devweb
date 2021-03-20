@@ -1,7 +1,7 @@
 {% block body %}
     {{ form_start(commentaire) }}
     <div class="mb-3">
-        <label for="commentaire" class="form-label">{{ form_label(commentaire.contenu) }}</label>
+        <label for="commentaire" class="form-label">{{ 'commentaire.addcom' | trans }}</label>
         {{ form_widget(commentaire.contenu) }}
         <div id="commentaire" class="form-text">{{ form_errors(commentaire.contenu) }}</div>
     </div>
