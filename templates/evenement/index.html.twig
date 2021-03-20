@@ -1,11 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello EvenementController!{% endblock %}
-
-{% block eventPage %}
-    <a class="nav-item nav-link active" href="{{ path('evenement.list') }}">Evenements</a>
-{% endblock %}
-
 {% block body %}
         <h1>Evenements</h1>
         <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">Ajouter un événement</a>
