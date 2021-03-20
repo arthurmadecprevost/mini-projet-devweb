@@ -1,0 +1,12 @@
+<ul class="list-group">
+{% for comm in commentaires %}
+        <li class="list-group-item comment">
+                <div class="commentaire_auteur">
+                        <p style="font-weight: bold; display: contents;">{{ comm.auteur.prenom }} {{ comm.auteur.nom }}</p>
+                        <p style="float : right;">{{ comm.date|format_datetime(locale='fr')}}</p>
+                </div>
+
+                <p>{{ comm.contenu }}</p>
+        </li>
+{% endfor %}
+</ul>

@@ -82,7 +82,6 @@ class Membre implements UserInterface
         $this->reservations = new ArrayCollection();
         $this->mesevenements = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;
