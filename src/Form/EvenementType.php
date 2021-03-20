@@ -51,9 +51,7 @@ class EvenementType extends AbstractType
             ->add('prix',IntegerType::class, [
                 'label' => 'Prix',
                 'attr' => ['min' => 0, 'class' => 'form-control']
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

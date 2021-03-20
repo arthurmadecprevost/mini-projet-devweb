@@ -43,11 +43,6 @@ class EvenementController extends AbstractController
     {
         $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
         $commentaire = new Commentaire();
-        $user = $this->getUser();
-        $commentaire->setAuteur($user);
-        $commentaire->setEvenement($evenement);
-        //$today = CURRENT_DATE();
-        $commentaire->setDate(new \DateTime('now'));
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,8 +50,7 @@ class EvenementController extends AbstractController
             $em->flush();
         }
         return $this->render('evenement/event.html.twig', [
-            'commentaire' => $form->createView(),
-            'event'=>$evenement,
+            'event'=>$evenement
         ]);
     }
 
@@ -127,7 +121,35 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
+    public function searchByCategory(Request $request)
+    {
+        $formSearch = $this->createFormBuilder()
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'sport' => 'sport',
+                    'cinema' => 'cinema',
+                    'théatre' => 'théatre',
+                    'restaurant' => 'restaurant',
+                    'randonnée' => 'randonée'
+                ],
+                'label' => 'Catégorie',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('Filtrer', SubmitType::class)
+            ->getForm();
+        $formSearch->handleRequest($request);
 
+        if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
+
+            //$recherche = $formRechAut->getData();
+
+            //var_dump($recherche);
+            $event = $formSearch->getData()['category'];
+            return $this->redirectToRoute('leslivresbyauteur',['id' => ($event->getId())]);
+        }
+        return $this->render('Recherche/rechercheParAut.html.twig', [
+            'formRechAut' => $formSearch->createView()]);
+    }
 /*    public function filtre(Request $request)
     {
         $formFiltre = $this->createFormBuilder()
