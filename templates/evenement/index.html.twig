@@ -2,8 +2,8 @@
 
 {% block title %}Hello EvenementController!{% endblock %}
 {% block body %}
-        <h1>Evenements</h1>
-        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">Ajouter un événement</a>
+        <h1>{{ 'evenements'|trans }}</h1>
+        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">{{'event.add'|trans}}</a>
         <div class="row">
             {% for event in evenements %}
                 {% if event.date >  date() %}
@@ -17,7 +17,7 @@
                             {% endif %}
                             <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                             <p class="card-text">{{ event.description }}</p>
-                            <p class="card-text">prix : {{ event.prix }}€</p>
+                            <p class="card-text">{{'event.price'|trans}} : {{ event.prix }}€</p>
                             <p class="card-text">0 / {{ event.nbParticipantsMax }} participants</p>
                             <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button">Réserver</a>
                         </div>

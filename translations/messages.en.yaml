@@ -1,1 +1,10 @@
-evenements: Events
+appname : 'Reservation Tool'
+evenements : 'Evenements'
+login : 'Log In'
+event.add : 'Add Event'
+event.price : 'Price'
+login.email : 'E-mail address'
+login.password : 'Password'
+login.createaccount : 'create account'
+login.notsignedin : 'If you don''t have an account,'
+login.loggedinas : 'You''re logged in as'

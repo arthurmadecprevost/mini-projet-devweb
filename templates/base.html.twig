@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg" style="background-color: #476C9B;">
-    <a class="navbar-brand" href="{{ path('index') }}">Outil de réservations</a>
+    <a class="navbar-brand" href="{{ path('index') }}">{{'appname'|trans}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -70,7 +70,7 @@
                 </div>
                 </li>
                 {% else %}
-                <a href="{{ path('app_login') }}" role="button" class="btn btn-danger">Connexion</a>
+                <a href="{{ path('app_login') }}" role="button" class="btn btn-danger">{{'login'|trans}}</a>
                 {% endif %}
             </ul>
         </form>

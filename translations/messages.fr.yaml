@@ -1,1 +1,10 @@
-evenements: Evenements
+appname : 'Outil de réservation'
+evenements : 'Evenements'
+login : 'Connexion'
+event.add : 'Ajouter un événement'
+event.price : 'Prix'
+login.email : 'Adresse e-mail'
+login.password : 'Mot de passe'
+login.createaccount : 'créer un compte'
+login.notsignedin : 'Si vous n''êtes pas encore inscrit,'
+login.loggedinas : 'Vous êtes connecté en tant que'
