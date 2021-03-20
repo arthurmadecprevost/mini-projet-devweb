@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="card">
+    <div class="card event">
         <div class="card-header">
             {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }}
         </div>
@@ -17,17 +17,7 @@
             <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">Ajouter une annonce</a>
         </div>
     </div>
-    <div class="list-group">
-{#    {{ render(path('commentaires.list')) }}
-    {% for commentaire in commentaires %}
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small>3 days ago</small>
-        </div>
-        <p class="mb-1">{{ commentaire.contenu }}</p>
-        <small>And some small print.</small>
-    {% endfor %}
-    </div>#}
-    {{ include('commentaires/create.html.twig') }}
+
+    {{ render(path('commentairesByEvent', {id:event.id})) }}
 
 {% endblock %}

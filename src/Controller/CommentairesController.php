@@ -36,7 +36,7 @@ class CommentairesController extends AbstractController
     {
         $commentaires = $this->getDoctrine()->getRepository(Commentaire::class)->findAll();
 
-        return $this->render('evenement/event.html.twig', [
+        return $this->render('commentaire/list.html.twig', [
             'controller_name' => 'CommentairesController',
             'commentaires' => $commentaires,
         ]);
