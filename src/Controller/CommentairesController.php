@@ -29,11 +29,11 @@ class CommentairesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/evenements/{id}", name="commentiares.list")
+     * @Route("/commentaires", name="commentaires.list")
      */
     public function list(): Response
     {
-        $commentaires = $this->getDoctrine()->getRepository(commentaires::class)->findAll();
+        $commentaires = $this->getDoctrine()->getRepository(Commentaire::class)->findAll();
 
         return $this->render('evenement/event.html.twig', [
             'controller_name' => 'CommentairesController',
@@ -43,7 +43,7 @@ class CommentairesController extends AbstractController
 
     /**
      * Créer un nouveau commentaire.
-     * @Route("/evenements/{id}", name="commentaire.create")
+     * @Route("/nouveau-commentaire", name="commentaire.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -58,8 +58,8 @@ class CommentairesController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('evenement.list');
         }
-        return $this->render('evenement/event.html.twig', [
-            'formCommentaire' => $form->createView(),
+        return $this->render('commentaire/create.html.twig', [
+            'commentaire' => $form->createView(),
         ]);
     }
 }
