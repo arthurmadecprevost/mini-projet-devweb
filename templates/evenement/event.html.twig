@@ -7,16 +7,18 @@
 {% endblock %}
 
 {% block body %}
-    <div class="card">
+    <div class="card event">
         <div class="card-header">
             {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }}
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ event.libelle }}</h5>
             <p class="card-text">{{ event.description }}</p>
-            <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">Ajouter une annonce</a>
+            <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">{{ 'event.addannounce' | trans }}</a>
         </div>
     </div>
+
+    {{ render(path('commentairesByEvent', {id:event.id})) }}
     {{ render(path('commentaire.create', {id: event.id})) }}
 
 {% endblock %}

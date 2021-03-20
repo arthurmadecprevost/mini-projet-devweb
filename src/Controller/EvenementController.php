@@ -141,31 +141,17 @@ class EvenementController extends AbstractController
 
         if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
 
-            //$recherche = $formRechAut->getData();
-
-            //var_dump($recherche);
-            $event = $formSearch->getData()['category'];
-            return $this->redirectToRoute('leslivresbyauteur',['id' => ($event->getId())]);
-        }
-        return $this->render('Recherche/rechercheParAut.html.twig', [
-            'formRechAut' => $formSearch->createView()]);
-    }
-/*    public function filtre(Request $request)
+    /**
+     * @Route("/commentairesByEvent/{id}", name="commentairesByEvent")
+     */
+    public function commentairesByEvent($id): Response
     {
-        $formFiltre = $this->createFormBuilder()
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'sport' => 'sport',
-                    'cinema' => 'cinema',
-                    'théatre' => 'théatre',
-                    'restaurant' => 'restaurant',
-                    'randonnée' => 'randonée'
-                ]
-            ])
-            ->add('rechercher', SubmitType::class)
-            ->getForm();
-        return $this->render('evenement/index.html.twig', [
-            'formRechAut' => $formFiltre->createView()]);
-    }*/
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->find($id);
+        $commentaire = $evenement->getCommentaires();
+        return $this->render('commentaires/list.html.twig', [
+            'commentaires' => $commentaire,
+        ]);
+    }
+
 
 }
