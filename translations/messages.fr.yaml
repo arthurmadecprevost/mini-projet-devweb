@@ -1,10 +1,17 @@
 appname : 'Outil de réservation'
 evenements : 'Evenements'
 login : 'Connexion'
+signin : 'Inscription'
+email : 'Adresse e-mail'
+password : 'Mot de passe'
+
 event.add : 'Ajouter un événement'
 event.price : 'Prix'
-login.email : 'Adresse e-mail'
-login.password : 'Mot de passe'
+# Login Page
 login.createaccount : 'créer un compte'
 login.notsignedin : 'Si vous n''êtes pas encore inscrit,'
 login.loggedinas : 'Vous êtes connecté en tant que'
+# Sign In Page
+signin.firstname : 'Prénom'
+signin.lastname : 'Nom'
+signin.birthdate : 'Date de naissance'

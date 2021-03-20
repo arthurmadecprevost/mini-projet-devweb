@@ -19,10 +19,10 @@
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">{{ 'login'|trans }}</h1>
-    <label for="inputEmail">{{ 'login.email'|trans }}</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="{{ 'login.email'|trans }}" required autofocus>
-    <label for="inputPassword">{{ 'login.password'|trans }}</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'login.password'|trans }}" required>
+    <label for="inputEmail">{{ 'email'|trans }}</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="{{ 'email'|trans }}" required autofocus>
+    <label for="inputPassword">{{ 'password'|trans }}</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'password'|trans }}" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
