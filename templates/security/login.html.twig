@@ -10,19 +10,19 @@
 
     {% if app.user %}
         <div class="alert alert-primary" role="alert">
-            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {{  'login.loggedinas' | trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
     {% else %}
         <div class="alert alert-primary" role="alert">
-            Si vous n'êtes pas encore inscrit, <a href="{{ path('app_register') }}">s'inscrire</a>
+            {{ 'login.notsignedin'| trans }}<a href="{{ path('app_register') }}"> {{ 'login.createaccount' | trans }}</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-    <label for="inputEmail">E-mail</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'login'|trans }}</h1>
+    <label for="inputEmail">{{ 'email'|trans }}</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="{{ 'email'|trans }}" required autofocus>
+    <label for="inputPassword">{{ 'password'|trans }}</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'password'|trans }}" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -40,7 +40,7 @@
     #}
 
     <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
+        {{ 'login'|trans }}
     </button>
 </form>
 {% endblock %}
