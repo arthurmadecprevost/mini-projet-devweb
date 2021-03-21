@@ -1,0 +1,16 @@
+{{ form_start(formSearch) }}
+<div class="row g-3 align-items-center">
+    <div class="col-auto">
+        <label for="inputPassword6" class="col-form-label">{{ form_label(formSearch.category) }}</label>
+    </div>
+    <div class="col-auto">
+        {{ form_widget(formSearch.category) }}
+        <span id="passwordHelpInline" class="form-text">
+        {{ form_errors(formSearch.category) }}
+        </span>
+    </div>
+    <div class="col-auto">
+        {{ form_row(formSearch.filter) }}
+    </div>
+</div>
+{{ form_end(formSearch) }}

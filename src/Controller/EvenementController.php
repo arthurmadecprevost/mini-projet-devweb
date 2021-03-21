@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Commentaire;
 use App\Entity\Evenement;
 use App\Form\CommentaireType;
 use App\Form\EvenementType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,13 +44,6 @@ class EvenementController extends AbstractController
     public function show($id, Request $request, EntityManagerInterface $em): Response
     {
         $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
-        $commentaire = new Commentaire();
-        $form = $this->createForm(CommentaireType::class, $commentaire);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($commentaire);
-            $em->flush();
-        }
         return $this->render('evenement/event.html.twig', [
             'event'=>$evenement
         ]);
@@ -121,25 +116,32 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
-  /*  public function searchByCategory(Request $request)
+    /**
+     * Filtrer un evenement.
+     * @Route("/rechercheParCategorie", name="eventByCat")
+     */
+    public function searchByCategory(Request $request)
     {
         $formSearch = $this->createFormBuilder()
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'sport' => 'sport',
-                    'cinema' => 'cinema',
-                    'théatre' => 'théatre',
-                    'restaurant' => 'restaurant',
-                    'randonnée' => 'randonée'
-                ],
-                'label' => 'Catégorie',
+            ->add('category', EntityType::class, [
+                'class' => Categorie::class,
+                'label' => 'Filtrer par catégories',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('Filtrer', SubmitType::class)
+            ->add('filter', SubmitType::class, [
+                'label' => 'Filtrer',
+                'attr' => ['class' => 'btn btn-primary']
+            ])
             ->getForm();
         $formSearch->handleRequest($request);
 
-        if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire*/
+        if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
+            $categorie = $formSearch->getData()['category'];
+            return $this->redirectToRoute('evenementByCat',['category' => ($categorie->getId())]);
+        }
+        return $this->render('evenement/filtre.html.twig', [
+            'formSearch' => $formSearch->createView()]);
+    }
 
     /**
      * @Route("/commentairesByEvent/{id}", name="commentairesByEvent")
@@ -150,6 +152,16 @@ class EvenementController extends AbstractController
         $commentaire = $evenement->getCommentaires();
         return $this->render('commentaires/list.html.twig', [
             'commentaires' => $commentaire,
+        ]);
+    }
+    /**
+     * @Route("/evenements/{id}/categorie", name="evenementByCat")
+     */
+    public function afficherEvenementsByCat($id)
+    {
+        $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('category' => $id));
+        return $this->render('evenement/index.html.twig',[
+            'evenements' => $evenements
         ]);
     }
 

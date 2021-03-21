@@ -28,7 +28,7 @@
             {% endfor %}
         </div>
     </div>
-
+    <h3>Espace commentaire</h3>
     {{ render(path('commentairesByEvent', {id:event.id})) }}
     {{ render(path('commentaire.create', {id:event.id})) }}
 

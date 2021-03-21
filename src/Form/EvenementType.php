@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Evenement;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -22,14 +24,8 @@ class EvenementType extends AbstractType
                 'label' => 'Nom de l\'événement',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'sport' => 'sport',
-                    'cinema' => 'cinema',
-                    'théatre' => 'théatre',
-                    'restaurant' => 'restaurant',
-                    'randonnée' => 'randonée'
-                ],
+            ->add('category', EntityType::class, [
+                'class' => Categorie::class,
                 'label' => 'Catégorie',
                 'attr' => ['class' => 'form-control']
             ])
@@ -46,7 +42,8 @@ class EvenementType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required'   => false,
             ])
             ->add('prix',IntegerType::class, [
                 'label' => 'Prix',
