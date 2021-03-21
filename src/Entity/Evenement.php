@@ -59,7 +59,6 @@ class Evenement
      */
     private $prix;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="mesevenements")
      * @ORM\JoinColumn(nullable=false)
