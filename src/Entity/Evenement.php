@@ -40,17 +40,17 @@ class Evenement
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="event")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="event", cascade={"persist", "remove"})
      */
     private $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="evenement", cascade={"persist", "remove"})
      */
     private $commentaires;
 
@@ -59,10 +59,6 @@ class Evenement
      */
     private $prix;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="mesevenements")
@@ -71,9 +67,15 @@ class Evenement
     private $organisateur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="evenement", cascade={"persist", "remove"})
      */
     private $annonces;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function __construct()
     {
@@ -218,17 +220,7 @@ class Evenement
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
 
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
     public function getOrganisateur(): ?Membre
     {
@@ -268,6 +260,18 @@ class Evenement
                 $annonce->setEvenement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Categorie
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categorie $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
