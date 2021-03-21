@@ -53,7 +53,7 @@ class AnnonceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($annonce);
             $em->flush();
-            return $this->redirectToRoute('annonces');
+            return $this->redirectToRoute('index');
         }
         return $this->render('annonce/create.html.twig', [
             'form' => $form->createView(),

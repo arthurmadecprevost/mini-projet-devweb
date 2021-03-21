@@ -44,22 +44,26 @@ class CommentairesController extends AbstractController
 
     /**
      * Créer un nouveau commentaire.
-     * @Route("/nouveau-commentaire", name="commentaire.create")
+     * @Route("/nouveau-commentaire/{id}", name="commentaire.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
 
-    public function create(Request $request, EntityManagerInterface $em) : Response {
+    public function create($id,Request $request, EntityManagerInterface $em) : Response {
         $commentaire = new Commentaire();
+        $user = $this->getUser();
+        $commentaire->setAuteur($user);
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
+        $commentaire->setEvenement($evenement);
+        $commentaire->setDate(new \DateTime('now'));
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($commentaire);
             $em->flush();
-            return $this->redirectToRoute('evenement.list');
         }
-        return $this->render('commentaire/create.html.twig', [
+        return $this->render('commentaires/create.html.twig', [
             'commentaire' => $form->createView(),
         ]);
     }

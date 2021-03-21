@@ -3,6 +3,7 @@
 {% block title %}Hello EvenementController!{% endblock %}
 {% block body %}
         <h1>{{ 'evenements'|trans }}</h1>
+        {{ render(path('eventByCat')) }}
         <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">{{'event.add'|trans}}</a>
         <div class="row">
             {% for event in evenements %}
@@ -32,7 +33,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Voulez-vous vraiment supprimer cet événement ?
+                                Voulez-vous vraiment supprimer cet événement ? Si cet événement contient des annonces ou
+                                des commentaires, ces informations sont susceptible de disparaître.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
