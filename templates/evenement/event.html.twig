@@ -15,9 +15,21 @@
             <h5 class="card-title">{{ event.libelle }}</h5>
             <p class="card-text">{{ event.description }}</p>
             <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">{{ 'event.addannounce' | trans }}</a>
+            <h1>Annonces</h1>
+            {% for announce in event.annonces %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <a href="#" class="card-title">{{ announce.titre }}</a>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ announce.datePublication|date("d/m/Y H:i:s") }}</h6>
+                        <p class="card-text">{{ announce.auteur.prenom }}</p>
+                        <p class="card-text">{{ announce.contenu }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-
+    <h3>Espace commentaire</h3>
     {{ render(path('commentairesByEvent', {id:event.id})) }}
+    {{ render(path('commentaire.create', {id:event.id})) }}
 
 {% endblock %}
