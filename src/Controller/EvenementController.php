@@ -46,7 +46,6 @@ class EvenementController extends AbstractController
         $user = $this->getUser();
         $commentaire->setAuteur($user);
         $commentaire->setEvenement($evenement);
-        //$today = CURRENT_DATE();
         $commentaire->setDate(new \DateTime('now'));
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
@@ -128,22 +127,17 @@ class EvenementController extends AbstractController
         return $this->redirectToRoute('evenement.list');
     }
 
-/*    public function filtre(Request $request)
+    /**
+     * @Route("/commentairesByEvent/{id}", name="commentairesByEvent")
+     */
+    public function commentairesByEvent($id): Response
     {
-        $formFiltre = $this->createFormBuilder()
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'sport' => 'sport',
-                    'cinema' => 'cinema',
-                    'théatre' => 'théatre',
-                    'restaurant' => 'restaurant',
-                    'randonnée' => 'randonée'
-                ]
-            ])
-            ->add('rechercher', SubmitType::class)
-            ->getForm();
-        return $this->render('evenement/index.html.twig', [
-            'formRechAut' => $formFiltre->createView()]);
-    }*/
+        $evenement = $this->getDoctrine()->getRepository(Evenement::class)->find($id);
+        $commentaire = $evenement->getCommentaires();
+        return $this->render('commentaires/list.html.twig', [
+            'commentaires' => $commentaire,
+        ]);
+    }
+
 
 }
