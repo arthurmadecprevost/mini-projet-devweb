@@ -7,17 +7,14 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Annonces</h1>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter une annonce</a>
-    {% endif %}
-    {% for annonce in annonces %}
-        <div class="card" style="width: 18rem;">
+    <h1>Les dernières annonces</h1>
+    {% for announce in annonces %}
+        <div class="card" style="margin: 1%;">
+            <h5 class="card-header">{{ announce.titre }}</h5>
             <div class="card-body">
-                <a href="#" class="card-title">{{ annonce.titre }}</a>
-                <h6 class="card-subtitle mb-2 text-muted">{{ annonce.datePublication|date("d/m/Y H:i:s") }}</h6>
-                <p class="card-text">{{ annonce.auteur.prenom }}</p>
-                <p class="card-text">{{ annonce.contenu }}</p>
+                <p class="card-text">{{ announce.contenu }}</p>
+                <p class="card-text" style="font-size: 0.9rem; display: contents;">{{ announce.auteur.prenom }}</p>
+                <p class="card-text" style="font-size: 0.9rem; float: right;">{{ announce.datePublication|date("d/m/Y H:i:s") }}</p>
             </div>
         </div>
     {% endfor %}
