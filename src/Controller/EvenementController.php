@@ -121,7 +121,7 @@ class EvenementController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('evenement.list');
     }
-    public function searchByCategory(Request $request)
+  /*  public function searchByCategory(Request $request)
     {
         $formSearch = $this->createFormBuilder()
             ->add('category', ChoiceType::class, [
@@ -139,7 +139,7 @@ class EvenementController extends AbstractController
             ->getForm();
         $formSearch->handleRequest($request);
 
-        if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
+        if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire*/
 
     /**
      * @Route("/commentairesByEvent/{id}", name="commentairesByEvent")
