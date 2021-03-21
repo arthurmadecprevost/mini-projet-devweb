@@ -14,22 +14,38 @@
         <div class="card-body">
             <h5 class="card-title">{{ event.libelle }}</h5>
             <p class="card-text">{{ event.description }}</p>
-            <a href="{{ path('annonce.create', {id:event.id}) }}" class="btn btn-primary">{{ 'event.addannounce' | trans }}</a>
-            <h1>Annonces</h1>
+        </div>
+    </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Annonces</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Commentaires</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <a href="{{ path('annonce.create', {id:event.id}) }}" style="margin: 2%;" class="btn btn-primary">{{ 'event.addannounce' | trans }}</a>
             {% for announce in event.annonces %}
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="margin: 1%;">
+                    <h5 class="card-header">{{ announce.titre }}</h5>
                     <div class="card-body">
-                        <a href="#" class="card-title">{{ announce.titre }}</a>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ announce.datePublication|date("d/m/Y H:i:s") }}</h6>
-                        <p class="card-text">{{ announce.auteur.prenom }}</p>
                         <p class="card-text">{{ announce.contenu }}</p>
+                        <p class="card-text" style="font-size: 0.9rem; display: contents;">{{ announce.auteur.prenom }}</p>
+                        <p class="card-text" style="font-size: 0.9rem; float: right;">{{ announce.datePublication|date("d/m/Y H:i:s") }}</p>
                     </div>
                 </div>
             {% endfor %}
+
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h3>Espace commentaire</h3>
+            {% include './commentaires/create.html.twig' %}
+            {{ render(path('commentairesByEvent', {id:event.id})) }}
         </div>
     </div>
-    <h3>Espace commentaire</h3>
-    {{ render(path('commentairesByEvent', {id:event.id})) }}
-    {{ render(path('commentaire.create', {id:event.id})) }}
+
+
 
 {% endblock %}

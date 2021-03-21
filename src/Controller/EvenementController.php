@@ -44,8 +44,20 @@ class EvenementController extends AbstractController
     public function show($id, Request $request, EntityManagerInterface $em): Response
     {
         $evenement = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('id' => $id));
+        $commentaire = new Commentaire();
+        $user = $this->getUser();
+        $commentaire->setAuteur($user);
+        $commentaire->setEvenement($evenement);
+        $commentaire->setDate(new \DateTime('now'));
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($commentaire);
+            $em->flush();
+        }
         return $this->render('evenement/event.html.twig', [
-            'event'=>$evenement
+            'event'=>$evenement,
+            'commentaire' => $form->createView()
         ]);
     }
 
@@ -125,7 +137,7 @@ class EvenementController extends AbstractController
         $formSearch = $this->createFormBuilder()
             ->add('category', EntityType::class, [
                 'class' => Categorie::class,
-                'label' => 'Filtrer par catégories',
+                'label' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('filter', SubmitType::class, [
@@ -164,6 +176,4 @@ class EvenementController extends AbstractController
             'evenements' => $evenements
         ]);
     }
-
-
 }
