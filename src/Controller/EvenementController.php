@@ -125,7 +125,7 @@ class EvenementController extends AbstractController
         $formSearch = $this->createFormBuilder()
             ->add('category', EntityType::class, [
                 'class' => Categorie::class,
-                'label' => 'Filtrer par catégories',
+                'label' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('filter', SubmitType::class, [
