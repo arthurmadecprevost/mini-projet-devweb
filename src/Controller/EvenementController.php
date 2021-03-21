@@ -176,4 +176,14 @@ class EvenementController extends AbstractController
             'evenements' => $evenements
         ]);
     }
+    /**
+     * @Route("/mesevenements", name="myevent")
+     */
+    public function myEvent(): Response
+    {
+        $events = $this->getUser()->getMesevenements();
+        return $this->render('evenement/myevent.html.twig', [
+            'events' => $events
+        ]);
+    }
 }

@@ -23,7 +23,7 @@ class AnnonceController extends AbstractController
      */
     public function index(): Response
     {
-        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
+        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy(array(), array('datePublication' => 'DESC'), 3);
 
         return $this->render('index.html.twig', [
             'annonces' => $annonces,

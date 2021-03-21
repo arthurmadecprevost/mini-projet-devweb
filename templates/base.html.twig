@@ -29,12 +29,12 @@
                 <a class="nav-item nav-link" href="{{ path('evenement.list') }}">{{'evenements'|trans}}</a>
                 {% endblock %}
             </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
-                {% block annoncePage %}
-                    <a class="nav-item nav-link" href="{{ path('annonces') }}">Annonces</a>
+                {% block myeventPage %}
+                    <a class="nav-item nav-link" href="{{ path('myevent') }}">{{'myevent'|trans}}</a>
                 {% endblock %}
             </li>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
                 {% block myreservationPage %}
                     <a class="nav-item nav-link" href="{{ path('myreservation') }}">{{ 'myreservations' | trans}}</a>
