@@ -1,11 +1,11 @@
 appname : 'Outil de réservation'
 evenements : 'Evenements'
-myevent : 'Mes évènement'
+myevent : 'Mes Evénements'
 loginlabel : 'Connexion'
 signinlabel : 'Inscription'
 email : 'Adresse e-mail'
 password : 'Mot de passe'
-myreservations : 'Mes réservations'
+myreservations : 'Mes Réservations'
 filter : 'Filtrer'
 filterByCat : 'Filtrer par catégorie'
 event:
