@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="card event">
         <div class="card-header">
             {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }}
@@ -27,6 +28,7 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <a href="{{ path('annonce.create', {id:event.id}) }}" style="margin: 2%;" class="btn btn-primary">{{ 'event.addannounce' | trans }}</a>
+
             {% for announce in event.annonces %}
                 <div class="card" style="margin: 1%;">
                     <h5 class="card-header">{{ announce.titre }}</h5>

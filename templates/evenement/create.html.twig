@@ -2,9 +2,9 @@
 
 {% block body %}
     {% if app.request.get('_route') == 'evenement.create' %}
-        <h1>Création d'un événement</h1>
+        <h1>{{ 'event.create'|trans }}</h1>
     {% else %}
-        <h1>Modification d'un événement</h1>
+        <h1>{{ 'event.edit'|trans }}</h1>
     {% endif %}
 
 
@@ -50,11 +50,11 @@
     </div>
     {% if app.request.get('_route') == 'evenement.create' %}
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Créer</button>
+        <button type="submit" class="btn btn-primary">{{ 'event.createbutton'|trans }}</button>
     </div>
     {% else %}
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Modifier</button>
+        <button type="submit" class="btn btn-primary">{{ 'event.editbutton'|trans }}</button>
     </div>
     {% endif %}
     {{ form_end(form) }}
