@@ -44,4 +44,19 @@ class ReservationController extends AbstractController
         $this->addFlash('success', 'L\'événement '.$evenement->getLibelle().' a bien été réservé');
         return $this->redirectToRoute('evenement.list');
     }
+
+    /**
+     * Supprimer une reservation.
+     * @Route("/reservation-delete/{id}", name="reservation.delete")
+     * @param Reservation $reservation
+     * @return Response
+     */
+    public function deleteReservation($id) : Response
+    {
+        $reservation = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reservation);
+        $em->flush();
+        return $this->redirectToRoute('myreservation');
+    }
 }
