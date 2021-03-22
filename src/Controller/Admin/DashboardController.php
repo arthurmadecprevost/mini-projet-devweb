@@ -33,11 +33,12 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Catégories'),
             // links to the 'index' action of the Category CRUD controller
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', Categorie::class),
-
+            MenuItem::subMenu('Categories', 'fa fa-bookmark')->setSubItems([
+                MenuItem::linkToCrud('Categories', 'fa fa-tags', Categorie::class),
+                MenuItem::linkToCrud('Ajouter Categorie', 'fa fa-tags', Categorie::class)
+                    ->setAction('new'),
+            ]),
             // links to a different CRUD action
-            MenuItem::linkToCrud('Ajouter Categorie', 'fa fa-tags', Categorie::class)
-                ->setAction('new'),
             MenuItem::section('Membres'),
             // links to the 'index' action of the Category CRUD controller
             MenuItem::linkToCrud('Membres', 'fa fa-tags', Membre::class),
