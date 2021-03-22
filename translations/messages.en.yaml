@@ -1,24 +1,26 @@
 appname : 'Reservation Tool'
 evenements : 'Evenements'
-login : 'Log In'
-signin : 'Sign In'
+myevent : 'My events'
+loginlabel : 'Log In'
+signinlabel : 'Sign In'
 email : 'E-mail address'
 password : 'Password'
 myreservations : 'My reservations'
 
-event.add : 'Add Event'
-event.price : 'Price'
-event.book : 'Book'
-event.addannounce : 'Add announce'
-# Login Page
-login.createaccount : 'create account'
-login.notsignedin : 'If you don''t have an account,'
-login.loggedinas : 'You''re logged in as'
-# Sign In Page
-signin.firstname : 'First Name'
-signin.lastname : 'Last Name'
-signin.birthdate : 'Birthdate'
-# Commentaire Page
-commentaire.coms : 'Comments'
-commentaire.addcom : 'Add a comment'
+event:
+  add : 'Add Event'
+  price : 'Price'
+  book : 'Book'
+  addannounce : 'Add announce'
+login:
+  createaccount : 'create account'
+  notsignedin : 'If you don''t have an account,'
+  loggedinas : 'You''re logged in as'
+signin:
+  firstname : 'First Name'
+  lastname : 'Last Name'
+  birthdate : 'Birthdate'
+commentaire:
+  coms : 'Comments'
+  addcom : 'Add a comment'
 

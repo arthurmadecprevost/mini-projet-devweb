@@ -137,7 +137,7 @@ class EvenementController extends AbstractController
         $formSearch = $this->createFormBuilder()
             ->add('category', EntityType::class, [
                 'class' => Categorie::class,
-                'label' => 'Filtrer par catégories',
+                'label' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('filter', SubmitType::class, [
@@ -174,6 +174,16 @@ class EvenementController extends AbstractController
         $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findOneBy(array('category' => $id));
         return $this->render('evenement/index.html.twig',[
             'evenements' => $evenements
+        ]);
+    }
+    /**
+     * @Route("/mesevenements", name="myevent")
+     */
+    public function myEvent(): Response
+    {
+        $events = $this->getUser()->getMesevenements();
+        return $this->render('evenement/myevent.html.twig', [
+            'events' => $events
         ]);
     }
 }

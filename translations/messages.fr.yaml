@@ -1,25 +1,27 @@
 appname : 'Outil de réservation'
 evenements : 'Evenements'
-login : 'Connexion'
-signin : 'Inscription'
+myevent : 'Mes évènement'
+loginlabel : 'Connexion'
+signinlabel : 'Inscription'
 email : 'Adresse e-mail'
 password : 'Mot de passe'
 myreservations : 'Mes réservations'
 
-event.add : 'Ajouter un événement'
-event.price : 'Prix'
-event.book : 'Réserver'
-event.addannounce : 'Ajouter une annonce'
-# Login Page
-login.createaccount : 'créer un compte'
-login.notsignedin : 'Si vous n''êtes pas encore inscrit,'
-login.loggedinas : 'Vous êtes connecté en tant que'
-# Sign In Page
-signin.firstname : 'Prénom'
-signin.lastname : 'Nom'
-signin.birthdate : 'Date de naissance'
-# Commentaire Page
-commentaire.coms : 'Commentaires'
-commentaire.addcom : 'Ajouter un commentaire'
+event:
+  add : 'Ajouter un événement'
+  price : 'Prix'
+  book : 'Réserver'
+  addannounce : 'Ajouter une annonce'
+login:
+  createaccount : 'créer un compte'
+  notsignedin : 'Si vous n''êtes pas encore inscrit,'
+  loggedinas : 'Vous êtes connecté en tant que'
+signin:
+  firstname : 'Prénom'
+  lastname : 'Nom'
+  birthdate : 'Date de naissance'
+commentaire:
+  coms : 'Commentaires'
+  addcom : 'Ajouter un commentaire'
 
 

@@ -21,7 +21,7 @@
                 <th>{{ reservation.event.date |format_datetime('none', 'short', locale='fr') }}</th>
                 <td>{{ reservation.event.lieu }}</td>
                 <td>{{ reservation.event.libelle }}</td>
-                <td>@{{ reservation.event.category }}</td>
+                <td>{{ reservation.event.category.nom }}</td>
             </tr>
         {% endfor %}
         </tbody>
