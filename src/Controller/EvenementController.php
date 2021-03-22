@@ -149,7 +149,7 @@ class EvenementController extends AbstractController
 
         if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
             $categorie = $formSearch->getData()['category'];
-            return $this->redirectToRoute('evenementByCat',['category' => ($categorie->getId())]);
+            return $this->redirectToRoute('evenementByCat',['id' => ($categorie->getId())]);
         }
         return $this->render('evenement/filtre.html.twig', [
             'formSearch' => $formSearch->createView()]);
