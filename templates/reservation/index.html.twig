@@ -22,8 +22,29 @@
                 <td>{{ reservation.event.lieu }}</td>
                 <td>{{ reservation.event.libelle }}</td>
                 <td>{{ reservation.event.category.nom }}</td>
+                <td>
+                    <a class="btn btn-danger " href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">delete</span></a>
+                </td>
             </tr>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Suppression de l'élément</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Voulez-vous vraiment supprimer cet réservation ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a class="btn btn-danger" href="{{ path('reservation.delete', {id:reservation.id}) }}" role="button">Confirmer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}

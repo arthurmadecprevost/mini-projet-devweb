@@ -51,6 +51,7 @@ class Evenement
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="evenement", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $commentaires;
 
@@ -67,6 +68,7 @@ class Evenement
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="evenement", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"datePublication" = "DESC"})
      */
     private $annonces;
 
