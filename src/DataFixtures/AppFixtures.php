@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
         $user->setPassword($this->passwordEncoder->encodePassword($user,'admin'));
         $manager->persist($user);
 
-        for ($i = 1; i <= 10; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $user = new Membre();
             $user->setPrenom('Membre '.$i);
             $user->setNom('Default');
