@@ -6,7 +6,8 @@ signinlabel : 'Inscription'
 email : 'Adresse e-mail'
 password : 'Mot de passe'
 myreservations : 'Mes réservations'
-
+filter : 'Filtrer'
+filterByCat : 'Filtrer par catégorie'
 event:
   add : 'Ajouter un événement'
   price : 'Prix'
