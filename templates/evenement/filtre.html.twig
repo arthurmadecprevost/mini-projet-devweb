@@ -1,12 +1,12 @@
 {{ form_start(formSearch) }}
 <div class="row g-3 align-items-center">
     <div class="col-auto">
-        <label for="inputPassword6" class="col-form-label">Filtrer par catégories</label>
+        {{ form_label(formSearch.filterByCat) }}
     </div>
     <div class="col-auto">
-        {{ form_widget(formSearch.category) }}
+        {{ form_widget(formSearch.filterByCat) }}
         <span id="passwordHelpInline" class="form-text">
-        {{ form_errors(formSearch.category) }}
+        {{ form_errors(formSearch.filterByCat) }}
         </span>
     </div>
     <div class="col-auto">

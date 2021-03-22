@@ -1,11 +1,12 @@
 appname : 'Reservation Tool'
-evenements : 'Evenements'
+evenements : 'Events'
 loginlabel : 'Log In'
 signinlabel : 'Sign In'
 email : 'E-mail address'
 password : 'Password'
 myreservations : 'My reservations'
-
+filter : 'Filter'
+filterByCat : 'Filter by category'
 event:
   add : 'Add Event'
   price : 'Price'
