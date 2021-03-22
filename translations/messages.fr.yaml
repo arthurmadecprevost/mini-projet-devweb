@@ -14,6 +14,10 @@ lieu : 'Lieu'
 nbParticipantsMax : 'Nombre de participants maximum'
 prix : 'Prix'
 description : 'Description'
+date : 'Date'
+time : 'Heure'
+base:
+  hello: 'Bonjour'
 event:
   create : 'Création d''un événement'
   edit : 'Modification d''un événement'
