@@ -44,7 +44,7 @@ class CommentairesController extends AbstractController
 
     /**
      * Créer un nouveau commentaire.
-     * @Route("/NewCommentaire/{id}", name="NewCommentaire")
+     * @Route("/newCommentaire/{id}", name="NewCommentaire")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response

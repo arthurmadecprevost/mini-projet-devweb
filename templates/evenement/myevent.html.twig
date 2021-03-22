@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'myevent' | trans }}</h1>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Heure</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Nom de l'évènement</th>
+            <th scope="col">Catégorie</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <th>{{ event.date |format_datetime('full', 'none', locale='fr') }}</th>
+                <th>{{ event.date |format_datetime('none', 'short', locale='fr') }}</th>
+                <td>{{ event.lieu }}</td>
+                <td>{{ event.libelle }}</td>
+                <td>{{ event.category.nom }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

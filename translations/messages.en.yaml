@@ -1,5 +1,6 @@
 appname : 'Reservation Tool'
-evenements : 'Events'
+evenements : 'Evenements'
+myevent : 'My events'
 loginlabel : 'Log In'
 signinlabel : 'Sign In'
 email : 'E-mail address'
