@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Categorie;
+use App\Entity\Evenement;
 use App\Entity\Membre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -45,7 +46,7 @@ class AppFixtures extends Fixture
         $user->setPassword($this->passwordEncoder->encodePassword($user,'admin'));
         $manager->persist($user);
 
-        for ($i = 1; i <= 10; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $user = new Membre();
             $user->setPrenom('Membre '.$i);
             $user->setNom('Default');
@@ -55,9 +56,21 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+        for ($i = 1; $i <= 10; $i++) {
+            $event = new Evenement();
+            $event->setLibelle('Evenement '.$i);
+            $event->setDate(new \DateTime('now'));
+            $event->setDescription('Evenement '.$i);
+            $event->setLieu('Lieu '.$i);
+            $event->setNbParticipantsMax(mt_rand(10, 100));
+            $event->setPrix(mt_rand(1, 50));
+            $event->setCategory();
+            $event->setOrganisateur();
+            $manager->persist($event);
+        }
+
 
 
         $manager->flush();
-
     }
 }
