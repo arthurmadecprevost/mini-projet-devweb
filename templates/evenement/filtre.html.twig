@@ -1,16 +1,8 @@
-{{ form_start(formSearch) }}
-<div class="row g-3 align-items-center">
-    <div class="col-auto">
-        {{ form_label(formSearch.filterByCat) }}
-    </div>
-    <div class="col-auto">
-        {{ form_widget(formSearch.filterByCat) }}
-        <span id="passwordHelpInline" class="form-text">
-        {{ form_errors(formSearch.filterByCat) }}
-        </span>
-    </div>
-    <div class="col-auto">
-        {{ form_row(formSearch.filter) }}
-    </div>
-</div>
-{{ form_end(formSearch) }}
+{{ form_start(form) }}
+    {{ form_row(form.q) }}
+
+    <h4>{{ 'category' | trans}}</h4>
+    {{ form_row(form.categories) }}
+
+    <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+{{ form_end(form) }}

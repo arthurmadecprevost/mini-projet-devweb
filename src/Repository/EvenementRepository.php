@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Evenement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 /**
  * @method Evenement|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +21,31 @@ class EvenementRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenement::class);
     }
 
+    /**
+     * Récupère les événements en lien avec un recherche
+     * @return Evenement[]
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('e')
+            ->select('c','e')
+            ->join('e.category', 'c');
+
+        if (!empty($search->q))
+        {
+            $query = $query
+                ->andWhere('e.libelle LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+        if (!empty($search->categories))
+        {
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+        return $query->getQuery()->getResult();
+    }
     // /**
     //  * @return Evenement[] Returns an array of Evenement objects
     //  */

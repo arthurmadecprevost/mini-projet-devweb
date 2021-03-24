@@ -12,6 +12,7 @@
             <th scope="col">{{ 'lieu' | trans }}</th>
             <th scope="col">{{ 'libelle' | trans }}</th>
             <th scope="col">{{ 'category' | trans }}</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +24,7 @@
                 <td>{{ reservation.event.libelle }}</td>
                 <td>{{ reservation.event.category.nom }}</td>
                 <td>
-                    <a class="btn btn-danger " href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">delete</span></a>
+                    <a class="btn btn-danger " href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{{ 'unregister' | trans }}</a>
                 </td>
             </tr>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
