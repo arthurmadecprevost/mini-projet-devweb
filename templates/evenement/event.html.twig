@@ -41,7 +41,6 @@
             {% endfor %}
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h3>Espace commentaire</h3>
             {% include './commentaires/create.html.twig' %}
             {{ render(path('commentairesByEvent', {id:event.id})) }}
         </div>

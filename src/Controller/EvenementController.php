@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Categorie;
 use App\Entity\Commentaire;
 use App\Entity\Evenement;
 use App\Form\CommentaireType;
 use App\Form\EvenementType;
+use App\Form\SearchType;
+use App\Repository\EvenementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,13 +28,15 @@ class EvenementController extends AbstractController
     /**
      * @Route("/evenements", name="evenement.list")
      */
-    public function list(): Response
+    public function list(EvenementRepository $repository, Request $request)
     {
-        $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
-
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $events = $repository->findSearch($data);
         return $this->render('evenement/index.html.twig', [
-            'controller_name' => 'EvenementController',
-            'evenements' => $evenements,
+            'evenements' => $events,
+            'form' => $form->createView()
         ]);
     }
 

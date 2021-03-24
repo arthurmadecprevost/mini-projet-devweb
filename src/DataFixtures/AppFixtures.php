@@ -21,21 +21,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $categorie = new Categorie();
-        $categorie->setNom('Sport');
-        $manager->persist($categorie);
-        $categorie = new Categorie();
-        $categorie->setNom('Cinéma');
-        $manager->persist($categorie);
-        $categorie = new Categorie();
-        $categorie->setNom('Théatre');
-        $manager->persist($categorie);
-        $categorie = new Categorie();
-        $categorie->setNom('Restaurant');
-        $manager->persist($categorie);
-        $categorie = new Categorie();
-        $categorie->setNom('Soirée');
-        $manager->persist($categorie);
 
         $user = new Membre();
         $user->setPrenom('Jean');
@@ -50,26 +35,91 @@ class AppFixtures extends Fixture
             $user = new Membre();
             $user->setPrenom('Membre '.$i);
             $user->setNom('Default');
-            $user->setDateNaissance(new \DateTime('NOW'));
+            $user->setDateNaissance(new \DateTime("1999-01-01 16:00:00"));
             $user->setEmail($i.'@user.fr');
             $user->setPassword($this->passwordEncoder->encodePassword($user,'membre'.$i));
             $manager->persist($user);
         }
+        $categorie = new Categorie();
+        $categorie->setNom('Sport');
+        $manager->persist($categorie);
 
-        for ($i = 1; $i <= 10; $i++) {
-            $event = new Evenement();
-            $event->setLibelle('Evenement '.$i);
-            $event->setDate(new \DateTime('now'));
-            $event->setDescription('Evenement '.$i);
-            $event->setLieu('Lieu '.$i);
-            $event->setNbParticipantsMax(mt_rand(10, 100));
-            $event->setPrix(mt_rand(1, 50));
-            $event->setCategory();
-            $event->setOrganisateur();
-            $manager->persist($event);
-        }
+        $event = new Evenement();
+        $event->setLibelle('Tennis');
+        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDescription('Evenement '.$i);
+        $event->setLieu('Nantes');
+        $event->setNbParticipantsMax(mt_rand(10, 100));
+        $event->setPrix(mt_rand(1, 50));
+        $event->setCategory($categorie);
+        $event->setOrganisateur($user);
+        $manager->persist($event);
 
 
+        $categorie = new Categorie();
+        $categorie->setNom('Cinéma');
+        $manager->persist($categorie);
+
+        $event = new Evenement();
+        $event->setLibelle('Avengers');
+        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDescription('Evenement '.$i);
+        $event->setLieu('Nantes');
+        $event->setNbParticipantsMax(mt_rand(10, 100));
+        $event->setPrix(mt_rand(1, 50));
+        $event->setCategory($categorie);
+        $event->setOrganisateur($user);
+        $manager->persist($event);
+
+
+        $categorie = new Categorie();
+        $categorie->setNom('Théatre');
+        $manager->persist($categorie);
+
+        $event = new Evenement();
+        $event->setLibelle('Le malade imaginaire');
+        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDescription('Evenement '.$i);
+        $event->setLieu('Bordeaux');
+        $event->setNbParticipantsMax(mt_rand(10, 100));
+        $event->setPrix(mt_rand(1, 50));
+        $event->setCategory($categorie);
+        $event->setOrganisateur($user);
+        $manager->persist($event);
+
+
+
+        $categorie = new Categorie();
+        $categorie->setNom('Restaurant');
+        $manager->persist($categorie);
+
+        $event = new Evenement();
+        $event->setLibelle('Macdo');
+        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDescription('Evenement '.$i);
+        $event->setLieu('Bordeaux');
+        $event->setNbParticipantsMax(mt_rand(10, 100));
+        $event->setPrix(mt_rand(1, 50));
+        $event->setCategory($categorie);
+        $event->setOrganisateur($user);
+        $manager->persist($event);
+
+
+
+        $categorie = new Categorie();
+        $categorie->setNom('Soirée');
+        $manager->persist($categorie);
+
+        $event = new Evenement();
+        $event->setLibelle('Soirée étudiante');
+        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDescription('Evenement '.$i);
+        $event->setLieu('Toulouse');
+        $event->setNbParticipantsMax(mt_rand(10, 100));
+        $event->setPrix(mt_rand(1, 50));
+        $event->setCategory($categorie);
+        $event->setOrganisateur($user);
+        $manager->persist($event);
 
         $manager->flush();
     }
