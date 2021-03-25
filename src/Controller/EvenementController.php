@@ -128,6 +128,12 @@ class EvenementController extends AbstractController
             ->setAction($this->generateUrl('evenement.delete', ['id'=>$id]))
             ->getForm();
         $form->handleRequest($request);
+        if ( ! $form->isSubmitted() || ! $form->isValid()) {
+            return $this->render('evenement/delete.html.twig', [
+                'evenement' => $evenement,
+                'form' => $form->createView(),
+            ]);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
