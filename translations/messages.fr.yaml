@@ -17,8 +17,11 @@ prix : 'Prix'
 description : 'Description'
 date : 'Date'
 time : 'Heure'
+q : 'Rechercher'
 base:
-  hello: 'Bonjour'
+  hello : 'Bonjour'
+  admin : 'Administration'
+  disconnect : 'Déconnexion'
 event:
   create : 'Création d''un événement'
   edit : 'Modification d''un événement'
@@ -28,6 +31,10 @@ event:
   price : 'Prix'
   book : 'Réserver'
   addannounce : 'Ajouter une annonce'
+  orgaby : 'Organisé par '
+  noorga : 'Vous n''avez créé aucun événement !'
+  nobook : 'Vous n''avez pas réservé d''événement !'
+  announces: 'Annonces'
 login:
   createaccount : 'créer un compte'
   notsignedin : 'Si vous n''êtes pas encore inscrit,'
@@ -39,5 +46,7 @@ signin:
 commentaire:
   coms : 'Commentaires'
   addcom : 'Ajouter un commentaire'
+  commentate: 'Commenter'
+
 
 

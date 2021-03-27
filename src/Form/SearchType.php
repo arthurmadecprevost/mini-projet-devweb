@@ -21,8 +21,9 @@ class SearchType extends AbstractType
             ->add('q', TextType::class, [
                 'label' => false,
                 'required' => false,
+                'translation_domain' => 'messages',
                 'attr' => [
-                    'placeholder' => 'Rechercher'
+                    'placeholder' => 'q'
                 ]
             ])
             ->add('categories', EntityType::class, [

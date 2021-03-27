@@ -26,7 +26,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenements", name="evenement.list")
+     * @Route({
+     *     "en": "/events",
+     *     "fr": "/evenements"
+     * }, name="evenement.list")
      */
     public function list(EvenementRepository $repository, Request $request)
     {
@@ -41,7 +44,10 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/evenement/{id}", name="event")
+     * @Route({
+     *     "en": "/event/{id}",
+     *     "fr": "/evenement/{id}"
+     * }, name="event")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -68,7 +74,10 @@ class EvenementController extends AbstractController
 
     /**
      * Créer un nouvel evenement.
-     * @Route("/nouvel-evenement", name="evenement.create")
+     * @Route({
+     *     "en": "/new-event",
+     *     "fr": "/nouvel-evenement"
+     * }, name="evenement.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -93,7 +102,10 @@ class EvenementController extends AbstractController
 
     /**
      * Modifier un evenement.
-     * @Route("/modifier-evenement/{id}", name="evenement.edit")
+     * @Route({
+     *     "en": "/edit-event/{id}",
+     *     "fr": "/modifier-evenement/{id}"
+     * }, name="evenement.edit")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -115,7 +127,10 @@ class EvenementController extends AbstractController
 
     /**
      * Supprimer un evenement.
-     * @Route("/evenement-delete/{id}", name="evenement.delete")
+     * @Route({
+     *     "en": "/delete-event/{id}",
+     *     "fr": "/supprimer-evenement/{id}"
+     * }, name="evenement.delete")
      * @param Request $request
      * @param Evenement $evenement
      * @param EntityManagerInterface $em
@@ -188,7 +203,10 @@ class EvenementController extends AbstractController
         ]);
     }
     /**
-     * @Route("/mesevenements", name="myevent")
+     * @Route({
+     *     "en": "/my-events",
+     *     "fr": "/mes-evenements"
+     * }, name="myevent")
      */
     public function myEvent(): Response
     {
