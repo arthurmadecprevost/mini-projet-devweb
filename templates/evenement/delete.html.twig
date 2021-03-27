@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="alert alert-danger">
+        <strong>Avertissement, si cet événement possède des annonces ou des commentaires, ils sont susceptibles d'être supprimé!</strong>
+        <p>Vous êtes en train de supprimer l'evenement suivant :</p>
+        <ul>
+            <li><strong>Nom : </strong>{{ evenement.category.nom }} - {{ evenement.libelle }}</li>
+            <li><strong>Lieu : </strong>{{ evenement.lieu }}</li>
+            <li><strong>Date : </strong>{{ evenement.date|date('m/d/Y') }}</li>
+        </ul>
+    </div>
+    {{ form_start(form, {'attr': {'class': 'navbar-form navbar-left'}}) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('evenement.list') }}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Annuler</a>
+    <button type="submit" class="btn btn-danger">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        Supprimer
+    </button>
+    {{ form_end(form) }}
+{% endblock %}
