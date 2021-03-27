@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EvenementController!{% endblock %}
+{% block title %}{{ 'event.libelle' | trans}}{% endblock %}
 {% block body %}
         <h1>{{ 'evenements'|trans }}</h1>
         <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">{{'event.add'|trans}}</a>
@@ -22,7 +22,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted">{{ event.lieu }} - {{ event.date|date("d/m/Y H:i:s") }}</h6>
                                     <p class="card-text">{{ event.description }}</p>
                                     <p class="card-text">{{'event.price'|trans}} : {{ event.prix }}€</p>
-                                    <p class="card-text">0 / {{ event.nbParticipantsMax }} participants</p>
+                                    <p class="card-text">{{ 'event.orgaby' | trans }}{{ event.organisateur.prenom }} {{ event.organisateur.nom }} </p>
                                     <a href="{{ path('reserver',{id:event.id}) }}" class="btn btn-secondary btn-sm" role="button">{{ 'event.book' | trans }}</a>
                                 </div>
                             </div>
