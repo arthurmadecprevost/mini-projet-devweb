@@ -54,3 +54,18 @@ Installation des fixtures
 ```bash
 php bin/console doctrine:fixtures:load
 ```
+
+## Utilisateurs de la DEMO
+
+Après avoir installé les fixtures, vous trouverez ces différents utilisateurs:
+``` 
+ADMIN:
+    email: admin@admin.fr
+    password: admin
+USERS:
+    email: jean@valjean.fr
+    password: jeanvaljean
+    
+    email: pierre@dupont.fr
+    password: pierredupont
+```

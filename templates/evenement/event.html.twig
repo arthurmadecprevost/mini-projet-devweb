@@ -10,7 +10,7 @@
 
     <div class="card event">
         <div class="card-header">
-            {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }}
+            {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }} - {{ 'event.orgaby' | trans }} {{ event.organisateur.prenom }} {{ event.organisateur.nom }}
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ event.libelle }}</h5>
