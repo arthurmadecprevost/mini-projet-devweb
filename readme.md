@@ -50,6 +50,8 @@ Pour déployer l'application, nous vous recommandons l'utilisation de PHP 8.0 (v
 
 Vous aurez besoin de configurer la base de données comme vu plus haut, puis d'installer les fixtures (données par défaut) avec la commande suivante:
 
+**Attention, la commande s'executera uniquement sur un environnement de développement (APP_ENV sur dev dans le .env)**
+
 Installation des fixtures
 ```bash
 php bin/console doctrine:fixtures:load
