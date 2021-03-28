@@ -21,32 +21,32 @@ class EvenementType extends AbstractType
     {
         $builder
             ->add('libelle', TextType::class, [
-                'label' => 'Nom de l\'événement',
+                'label_format' => '%name%',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('category', EntityType::class, [
                 'class' => Categorie::class,
-                'label' => 'Catégorie',
+                'label_format' => '%name%',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('lieu', TextType::class, [
-                'label' => 'Lieu',
+                'label_format' => '%name%',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('nbParticipantsMax', IntegerType::class, [
-                'label' => 'Nombre de participants maximum',
+                'label_format' => '%name%',
                 'attr' => ['min' => 2, 'class' => 'form-control']
             ])
             ->add('date', DateTimeType::class,[
                 'widget' => 'choice',
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description',
+                'label_format' => '%name%',
                 'attr' => ['class' => 'form-control'],
                 'required'   => false,
             ])
             ->add('prix',IntegerType::class, [
-                'label' => 'Prix',
+                'label_format' => '%name%',
                 'attr' => ['min' => 0, 'class' => 'form-control']
             ]);
     }

@@ -19,10 +19,12 @@
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Annonces</button>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                {{ 'event.announces' | trans }}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Commentaires</button>
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                {{ 'commentaire.coms' | trans }}</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -39,10 +41,8 @@
                     </div>
                 </div>
             {% endfor %}
-
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h3>Espace commentaire</h3>
             {% include './commentaires/create.html.twig' %}
             {{ render(path('commentairesByEvent', {id:event.id})) }}
         </div>

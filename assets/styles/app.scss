@@ -1,5 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
-
+.nav-tabs .nav-link {
+  background-color: #b0b0e1;
+}
 .container{
   margin-top: 20px;
 }
@@ -37,4 +39,9 @@
 .comment{
   border-left-width: 0px;
   border-right-width: 0px;
+}
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }

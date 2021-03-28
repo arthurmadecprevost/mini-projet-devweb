@@ -14,9 +14,9 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('contenu', TextType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control','placeholder' => 'Ajouter un commentaire ...']
-
+                'label' => false,
+                'translation_domain' => 'messages',
+                'attr' => ['class' => 'form-control','placeholder' => 'commentaire.addcom']
             ])
         ;
     }

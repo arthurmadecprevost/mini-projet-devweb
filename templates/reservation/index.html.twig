@@ -3,15 +3,17 @@
 {% block title %}Mes réservations{% endblock %}
 
 {% block body %}
+    {% if reservations is not empty %}
     <h1>{{ 'myreservations' | trans }}</h1>
     <table class="table">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Heure</th>
-            <th scope="col">Lieu</th>
-            <th scope="col">Nom de l'évènement</th>
-            <th scope="col">Catégorie</th>
+            <th scope="col">{{ 'date' | trans }}</th>
+            <th scope="col">{{ 'time' | trans }}</th>
+            <th scope="col">{{ 'lieu' | trans }}</th>
+            <th scope="col">{{ 'libelle' | trans }}</th>
+            <th scope="col">{{ 'category' | trans }}</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +25,7 @@
                 <td>{{ reservation.event.libelle }}</td>
                 <td>{{ reservation.event.category.nom }}</td>
                 <td>
-                    <a class="btn btn-danger " href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">delete</span></a>
+                    <a class="btn btn-danger " href="#" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{{ 'unregister' | trans }}</a>
                 </td>
             </tr>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -46,5 +48,10 @@
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <div class="alert alert-secondary" role="alert">
+        {{ 'event.nobook' | trans }}
+    </div>
+    {% endif %}
 
 {% endblock %}

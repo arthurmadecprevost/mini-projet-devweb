@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Categorie;
 use App\Entity\Commentaire;
 use App\Entity\Evenement;
 use App\Form\CommentaireType;
 use App\Form\EvenementType;
+use App\Form\SearchType;
+use App\Repository\EvenementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,20 +26,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/evenements", name="evenement.list")
+     * @Route({
+     *     "en": "/events",
+     *     "fr": "/evenements"
+     * }, name="evenement.list")
      */
-    public function list(): Response
+    public function list(EvenementRepository $repository, Request $request)
     {
-        $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
-
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $events = $repository->findSearch($data);
         return $this->render('evenement/index.html.twig', [
-            'controller_name' => 'EvenementController',
-            'evenements' => $evenements,
+            'evenements' => $events,
+            'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/evenement/{id}", name="event")
+     * @Route({
+     *     "en": "/event/{id}",
+     *     "fr": "/evenement/{id}"
+     * }, name="event")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -63,7 +74,10 @@ class EvenementController extends AbstractController
 
     /**
      * Créer un nouvel evenement.
-     * @Route("/nouvel-evenement", name="evenement.create")
+     * @Route({
+     *     "en": "/new-event",
+     *     "fr": "/nouvel-evenement"
+     * }, name="evenement.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -88,7 +102,10 @@ class EvenementController extends AbstractController
 
     /**
      * Modifier un evenement.
-     * @Route("/modifier-evenement/{id}", name="evenement.edit")
+     * @Route({
+     *     "en": "/edit-event/{id}",
+     *     "fr": "/modifier-evenement/{id}"
+     * }, name="evenement.edit")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -110,7 +127,10 @@ class EvenementController extends AbstractController
 
     /**
      * Supprimer un evenement.
-     * @Route("/evenement-delete/{id}", name="evenement.delete")
+     * @Route({
+     *     "en": "/delete-event/{id}",
+     *     "fr": "/supprimer-evenement/{id}"
+     * }, name="evenement.delete")
      * @param Request $request
      * @param Evenement $evenement
      * @param EntityManagerInterface $em
@@ -123,6 +143,12 @@ class EvenementController extends AbstractController
             ->setAction($this->generateUrl('evenement.delete', ['id'=>$id]))
             ->getForm();
         $form->handleRequest($request);
+        if ( ! $form->isSubmitted() || ! $form->isValid()) {
+            return $this->render('evenement/delete.html.twig', [
+                'evenement' => $evenement,
+                'form' => $form->createView(),
+            ]);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
@@ -135,21 +161,21 @@ class EvenementController extends AbstractController
     public function searchByCategory(Request $request)
     {
         $formSearch = $this->createFormBuilder()
-            ->add('category', EntityType::class, [
+            ->add('filterByCat', EntityType::class, [
                 'class' => Categorie::class,
-                'label' => false,
+                'label_format' => '%name%',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('filter', SubmitType::class, [
-                'label' => 'Filtrer',
-                'attr' => ['class' => 'btn btn-primary']
+                'attr' => ['class' => 'btn btn-primary'],
+                'label_format' => '%name%',
             ])
             ->getForm();
         $formSearch->handleRequest($request);
 
         if($formSearch->isSubmitted()) {  //ce code est exécuté lors de la soumission du formulaire
             $categorie = $formSearch->getData()['category'];
-            return $this->redirectToRoute('evenementByCat',['category' => ($categorie->getId())]);
+            return $this->redirectToRoute('evenementByCat',['id' => ($categorie->getId())]);
         }
         return $this->render('evenement/filtre.html.twig', [
             'formSearch' => $formSearch->createView()]);
@@ -177,7 +203,10 @@ class EvenementController extends AbstractController
         ]);
     }
     /**
-     * @Route("/mesevenements", name="myevent")
+     * @Route({
+     *     "en": "/my-events",
+     *     "fr": "/mes-evenements"
+     * }, name="myevent")
      */
     public function myEvent(): Response
     {

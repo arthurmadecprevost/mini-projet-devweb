@@ -1,17 +1,40 @@
-appname : 'Outil de réservation'
+appname : 'Evento'
 evenements : 'Evenements'
-myevent : 'Mes évènement'
+myevent : 'Mes Evénements'
 loginlabel : 'Connexion'
 signinlabel : 'Inscription'
+unregister : 'Se désinscrire'
 email : 'Adresse e-mail'
 password : 'Mot de passe'
-myreservations : 'Mes réservations'
-
+myreservations : 'Mes Réservations'
+libelle : 'Nom de l''événement'
+filter : 'Filtrer'
+filterByCat : 'Filtrer par catégorie'
+category : 'Categories'
+lieu : 'Lieu'
+nbParticipantsMax : 'Nombre de participants maximum'
+prix : 'Prix'
+description : 'Description'
+date : 'Date'
+time : 'Heure'
+q : 'Rechercher'
+base:
+  hello : 'Bonjour'
+  admin : 'Administration'
+  disconnect : 'Déconnexion'
 event:
+  create : 'Création d''un événement'
+  edit : 'Modification d''un événement'
+  createbutton : 'Créer'
+  editbutton : 'Modifier'
   add : 'Ajouter un événement'
   price : 'Prix'
   book : 'Réserver'
   addannounce : 'Ajouter une annonce'
+  orgaby : 'Organisé par '
+  noorga : 'Vous n''avez créé aucun événement !'
+  nobook : 'Vous n''avez pas réservé d''événement !'
+  announces: 'Annonces'
 login:
   createaccount : 'créer un compte'
   notsignedin : 'Si vous n''êtes pas encore inscrit,'
@@ -23,5 +46,7 @@ signin:
 commentaire:
   coms : 'Commentaires'
   addcom : 'Ajouter un commentaire'
+  commentate: 'Commenter'
+
 
 
