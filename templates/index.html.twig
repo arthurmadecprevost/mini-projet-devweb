@@ -10,10 +10,10 @@
     <h1>Les dernières annonces</h1>
     {% for announce in annonces %}
         <div class="card" style="margin: 1%;">
-            <h5 class="card-header">{{ announce.titre }}</h5>
+            <h5 class="card-header"><a href="{{ path('event', {id:announce.evenement.id}) }}">{{ announce.evenement.libelle }}</a> - {{ announce.titre }}</h5>
             <div class="card-body">
                 <p class="card-text">{{ announce.contenu }}</p>
-                <p class="card-text" style="font-size: 0.9rem; display: contents;">{{ announce.auteur.prenom }}</p>
+                <p class="card-text" style="font-size: 0.9rem; display: contents;">{{ announce.auteur.prenom }} {{ announce.auteur.nom }}</p>
                 <p class="card-text" style="font-size: 0.9rem; float: right;">{{ announce.datePublication|date("d/m/Y H:i:s") }}</p>
             </div>
         </div>
