@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'event.libelle' | trans}}{% endblock %}
+{% block title %}{{ 'evenements' | trans}}{% endblock %}
 {% block body %}
         <h1>{{ 'evenements'|trans }}</h1>
-        <a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">{{'event.add'|trans}}</a>
+    <p><a href="{{ path('evenement.create') }}" class="btn btn-primary" role="button">{{'event.add'|trans}}</a></p>
         <div class="row">
             <div class="col-md-3">
                 {% include 'evenement/filtre.html.twig' with {form: form} only %}
