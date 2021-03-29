@@ -9,7 +9,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function indexNoLocale(): Response
+    public function index(): Response
     {
         return $this->redirectToRoute('annonces', ['_locale' => 'fr']);
     }
