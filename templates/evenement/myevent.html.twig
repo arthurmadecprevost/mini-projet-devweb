@@ -11,7 +11,7 @@
             <th scope="col">{{ 'lieu' | trans }}</th>
             <th scope="col">{{ 'libelle' | trans }}</th>
             <th scope="col">{{ 'category' | trans }}</th>
-            <th scope="col">Action</th>
+            <th scope="col" colspan="2" style="text-align: center">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +22,7 @@
                 <td>{{ event.lieu }}</td>
                 <td>{{ event.libelle }}</td>
                 <td>{{ event.category.nom }}</td>
+                <td><a class="btn btn-light btn-suppr" href="{{ path('evenement.edit', {id:event.id}) }}" role="button"><span class="material-icons">create</span></a></td>
                 <td><a class="btn btn-danger" href="{{ path('evenement.delete', {id:event.id}) }}" role="button"><span class="material-icons">delete</span></a></td>
             </tr>
         {% endfor %}
