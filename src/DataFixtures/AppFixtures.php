@@ -69,7 +69,7 @@ class AppFixtures extends Fixture
         $annonce->setTitre('A ne pas oublier...');
         $annonce->setContenu('Noubliez surtout pas vos raquettes...');
         $annonce->setAuteur($event->getOrganisateur());
-        $annonce->setDatePublication(new \DateTime("2022-01-01 17:00:00"));
+        $annonce->setDatePublication(new \DateTime("2020-01-01 17:00:00"));
         $annonce->setEvenement($event);
         $manager->persist($annonce);
 
@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
 
         $event = new Evenement();
         $event->setLibelle('Avengers');
-        $event->setDate(new \DateTime("2022-01-01 16:00:00"));
+        $event->setDate(new \DateTime("2020-01-01 16:00:00"));
         $event->setDescription('Evenement de Avengers');
         $event->setLieu('Nantes');
         $event->setNbParticipantsMax(mt_rand(10, 100));
@@ -93,7 +93,7 @@ class AppFixtures extends Fixture
         $annonce->setTitre('Merci de respecter les gestes barrières');
         $annonce->setContenu('2022 est certes un peu loin, mais je préviens direct: respectez la distanciation sociale !!! et le silence dans la salle svp');
         $annonce->setAuteur($event->getOrganisateur());
-        $annonce->setDatePublication(new \DateTime("2022-01-01 18:00:00"));
+        $annonce->setDatePublication(new \DateTime("2020-01-01 18:00:00"));
         $annonce->setEvenement($event);
         $manager->persist($annonce);
 
@@ -160,7 +160,7 @@ class AppFixtures extends Fixture
         $annonce->setTitre('Il n y aura pas de BigMac !');
         $annonce->setContenu('On a perdu tous les pains BigMac désolé les amis');
         $annonce->setAuteur($event->getOrganisateur());
-        $annonce->setDatePublication(new \DateTime("2022-01-01 19:00:00"));
+        $annonce->setDatePublication(new \DateTime("2020-01-01 19:00:00"));
         $annonce->setEvenement($event);
         $manager->persist($annonce);
 
