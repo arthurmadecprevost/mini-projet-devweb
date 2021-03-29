@@ -3,7 +3,7 @@ evenements : 'Events'
 myevent : 'My Events'
 loginlabel : 'Log In'
 signinlabel : 'Sign In'
-unregister : 'unregister'
+unregister : 'Unregister'
 email : 'E-mail address'
 password : 'Password'
 myreservations : 'My Reservations'
@@ -17,8 +17,11 @@ prix : 'Price'
 description : 'Description'
 date : 'Date'
 time : 'Time'
+q : 'Search'
 base:
   hello : 'Hello'
+  admin: 'Administration'
+  disconnect : 'Log Out'
 event:
   create: 'Event creation'
   edit : 'Event editing'
@@ -28,6 +31,10 @@ event:
   price : 'Price'
   book : 'Book'
   addannounce : 'Add announce'
+  orgaby : 'Organized by '
+  noorga : 'You haven''t created any event !'
+  nobook : 'You haven''t booked an event !'
+  announces : 'Announces'
 login:
   createaccount : 'create account'
   notsignedin : 'If you don''t have an account,'
@@ -39,4 +46,5 @@ signin:
 commentaire:
   coms : 'Comments'
   addcom : 'Add a comment'
+  commentate : 'Commentate'
 

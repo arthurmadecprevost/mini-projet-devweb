@@ -14,7 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/mesreservation", name="myreservation")
+     * @Route({
+     *     "en": "/my-reservations",
+     *     "fr": "/mes-reservations"
+     * }, name="myreservation")
      */
     public function myReservation(): Response
     {
@@ -24,10 +27,15 @@ class ReservationController extends AbstractController
         ]);
     }
     /**
-     * @Route("/reserver/{id}", name="reserver")
+     * @Route({
+     *     "en": "/book/{id}",
+     *     "fr": "/reserver/{id}"
+     * }, name="reserver")
      */
     public function reserver($id)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $reservation = new Reservation();
@@ -47,7 +55,10 @@ class ReservationController extends AbstractController
 
     /**
      * Supprimer une reservation.
-     * @Route("/reservation-delete/{id}", name="reservation.delete")
+     * @Route({
+     *     "en": "/delete-reservation/{id}",
+     *     "fr": "/supprimer-reservation/{id}"
+     * }, name="reservation.delete")
      * @param Reservation $reservation
      * @return Response
      */

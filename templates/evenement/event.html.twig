@@ -10,7 +10,7 @@
 
     <div class="card event">
         <div class="card-header">
-            {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }}
+            {{ event.lieu }} - {{ event.date|format_datetime(locale='fr') }} - {{ 'event.orgaby' | trans }} {{ event.organisateur.prenom }} {{ event.organisateur.nom }}
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ event.libelle }}</h5>
@@ -19,10 +19,12 @@
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Annonces</button>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                {{ 'event.announces' | trans }}</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Commentaires</button>
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                {{ 'commentaire.coms' | trans }}</button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
